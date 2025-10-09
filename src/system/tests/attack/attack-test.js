@@ -37,7 +37,15 @@ export class AttackTest extends SkillTest
 
     get itemTraits() 
     {
-        return (this.item.system.traits || this.item.system.attack?.traits)?.clone();
+        let traits = (this.item.system.traits || this.item.system.attack?.traits);
+        if (traits && typeof traits.clone === 'function') 
+        {
+        // Create a fresh clone with all modifications
+        let cloned = traits.clone();
+        cloned.list = [...traits.list];
+        return cloned;
+        }
+        return traits;
     }
 
 
