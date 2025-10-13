@@ -111,6 +111,26 @@ export class TestDialog extends WarhammerRollDialogV2
         return context
     }
 
+    async _onRender(options) 
+    {
+        await super._onRender(options);
+
+        // Füge Fate-Handling zum Roll-Button hinzu
+        let rollButton = this.element.querySelector('button[type="submit"]');
+        if (rollButton)
+        {
+            rollButton.addEventListener('click', async (ev) => {
+            let useFate = this.fields.fateAdvantage || this.userEntry.fateAdvantage;
+            if (useFate && this.actor.system.fate.value > 0)
+            {
+                let oldFate = this.actor.system.fate.value;
+                await this.actor.update({'system.fate.value': oldFate - 1});
+                ui.notifications.info(`Fate used! (${oldFate} → ${oldFate - 1})`);
+            }
+            });
+        }
+    }
+
     async computeFields() 
     {
         if (this.fields.useSuperiority)
