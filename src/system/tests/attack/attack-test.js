@@ -1,3 +1,4 @@
+import { TraitListModel } from "../../../model/item/components/traits";
 import { SkillTest } from "../skill/skill-test";
 import { AttackEvaluator } from "./attack-evaluator";
 
@@ -32,20 +33,16 @@ export class AttackTest extends SkillTest
         {
             tags.push(`${game.i18n.localize("IMPMAL.Supercharge")} (+${this.itemTraits.has("supercharge").value})`);
         }
+        if (this.result.fireMode == "rapidFireSpread")
+        {
+            tags.push(`${game.i18n.localize("IMPMAL.RapidFire")} (${game.i18n.localize("IMPMAL.Spread")})`);
+        }
         return tags;
     }
 
     get itemTraits() 
     {
-        let traits = (this.item.system.traits || this.item.system.attack?.traits);
-        if (traits && typeof traits.clone === 'function') 
-        {
-        // Create a fresh clone with all modifications
-        let cloned = traits.clone();
-        cloned.list = [...traits.list];
-        return cloned;
-        }
-        return traits;
+        return new TraitListModel(this.item.system.traits?.toObject(false) || this.item.system.attack?.traits.toObject(false))
     }
 
 
@@ -55,6 +52,7 @@ export class AttackTest extends SkillTest
         let testData = super._getDialogTestData(data);
         testData.hitLocation = data.hitLocation;
         testData.supercharge = data.supercharge;
+        testData.fireMode = data.fireMode;
         testData.burst = data.burst;
         testData.rapidFire = data.rapidFire;
         testData.additionalDamage = data.damage;
