@@ -63,7 +63,7 @@ export class OpposedTestResult
                 this._tooltips.damage.supercharge = {label : "IMPMAL.Supercharge", value : supercharge}
             }
 
-            this.damage = this.computeDamage(attackerTest.item, {add : totalBonus, attackerTest, defenderTest});
+            this.damage = this.computeDamage(attackerTest.item, {add : supercharge, attackerTest, defenderTest});
             this.formatTooltips()
         }
 
