@@ -1023,6 +1023,7 @@ const IMPMAL = {
                     label : "Reduce Damage",
                     trigger : "preTakeDamage",
                     script : `
+                    if (!args.opposed) return;
                     let weapon = args.opposed.attackerTest.item
                     if (
                         args.opposed && weapon?.system.category == "grenadesExplosives" &&  // Grenade or Explosive
@@ -1638,7 +1639,7 @@ const IMPMAL = {
                         },
                         {
                             label: "Blinded",
-                            script: `await this.actor.addCondition("blinded").then(condition => if (condition) condition?.setFlag("impmal", "fromZone", this.effect.getFlag("impmal", "fromZone")))`,
+                            script: `await this.actor.addCondition("blinded").then(condition => { if (condition) condition?.setFlag("impmal", "fromZone", this.effect.getFlag("impmal", "fromZone")); })`,
                             trigger: "immediate",
                             options : {
                                     deleteEffect : false
