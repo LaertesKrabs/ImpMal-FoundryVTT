@@ -9,6 +9,7 @@ export default class ProtectionSheet extends IMItemSheet
       actions : {
           toggleMod: this._onToggleMod,
           clearDamage: this._onClearDamage,
+          clearRended: this._onClearRended
       }
     }
     
@@ -43,6 +44,16 @@ export default class ProtectionSheet extends IMItemSheet
                 damage[index] = 0;
             }
             this.item.update({ "system.damage": damage });
+        }
+    }
+
+    static _onClearRended(ev, target) {
+        let rended = foundry.utils.deepClone(this.item.system.rended);
+        if (rended) {
+            for (let index in rended) {
+                rended[index] = false;
+            }
+            this.item.update({ "system.rended": rended });
         }
     }
 }
