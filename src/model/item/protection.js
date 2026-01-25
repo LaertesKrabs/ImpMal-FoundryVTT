@@ -93,9 +93,10 @@ export class ProtectionModel extends EquippableItemModel
     {
         return Object.values(this.damage).some(i => i > 0);
     }
-    
-    get isDestroyed() {
-        return Object.values(this.destroyed).some(i => i);
+
+    get isRended() 
+    {
+        return Object.values(this.rended).some(i => i);
     }
 
     get categoryEffect()
