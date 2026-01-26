@@ -16,6 +16,7 @@ export class ProtectionModel extends EquippableItemModel
         schema.armour = new fields.NumberField();
         schema.locations = new fields.EmbeddedDataField(HitLocationsModel);
         schema.damage = new fields.ObjectField({});
+<<<<<<< HEAD
         schema.destroyed = new fields.ObjectField({});
         schema.slots = new fields.EmbeddedDataField(EquipSlots);
         schema.mods = new fields.EmbeddedDataField(ModListModel);
@@ -93,10 +94,9 @@ export class ProtectionModel extends EquippableItemModel
     {
         return Object.values(this.damage).some(i => i > 0);
     }
-
-    get isRended() 
-    {
-        return Object.values(this.rended).some(i => i);
+    
+    get isDestroyed() {
+        return Object.values(this.destroyed).some(i => i);
     }
 
     get categoryEffect()
