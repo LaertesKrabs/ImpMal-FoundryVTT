@@ -783,7 +783,7 @@ const IMPMAL = {
                             },
                             {
                                 label : "Remove",
-                                script: "if (args.combatant.actor.uuid == this.effect.origin) this.effect.delete();", // Delete at the start of the defender's turn
+                                script: "if (args.combat.combatant.actor.uuid === this.effect.sourceActor.uuid) this.effect.delete();", // Delete at the start of the defender's turn
                                 trigger: "updateCombat",
                             }
                         ]
@@ -2116,6 +2116,21 @@ function optionArrayToObject(options)
         return obj
     }, {})
 }
+
+Object.defineProperty(IMPMAL, 'difficultyChoices', {
+    get() {
+        let difficulties = foundry.utils.deepClone(game.impmal.config.difficulties);
+
+        for(let d in difficulties)
+        {
+            let name = difficulties[d].name;
+            let modifier = difficulties[d].modifier;
+            difficulties[d] = `${name} (${modifier >= 0 ? "+" : ""}${modifier})`;
+        }
+    
+        return difficulties;
+    }
+});
 
 foundry.utils.mergeObject(IMPMAL, defaultWarhammerConfig, {overwrite: false})
 export {IMPMAL, IM_CONFIG};
