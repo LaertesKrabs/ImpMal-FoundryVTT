@@ -4,8 +4,8 @@
   "description": "The **official** system for playing Warhammer 40,000: Imperium Maledictum on [Foundry VTT](https://foundryvtt.com/). Created by Moo Man.",
   "main": "foundry-path.js",
   "scripts": {
-    "build": "node scriptPacker.js&& cross-env NODE_ENV=development rollup --config rollup.config.js --watch",
-    "release": "node scriptPacker.js&& cross-env NODE_ENV=production rollup --config rollup.config.js",
+    "build": "node scriptPacker.js&& cross-env NODE_ENV=development rollup --config rollup.config.mjs --watch",
+    "release": "node scriptPacker.js&& cross-env NODE_ENV=production rollup --config rollup.config.mjs",
     "lint": "npx eslint ./src/**",
     "fix-lint": "npx eslint ./src/** --fix"
   },
@@ -33,6 +33,8 @@
     "rollup-plugin-copy-watch": "^0.0.1",
     "rollup-plugin-postcss": "^4.0.2",
     "sass": "^1.83.4",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "simple-git": "^3.36.0",
+    "yargs": "^18.0.0"
   }
 }

@@ -6,7 +6,7 @@
         <div class="fields" data-path="system.characteristics.choices">
             {{#each (config "characteristics")}}
                 <div>
-                    <input type="checkbox" data-value="{{@key}}" {{checked (includes
+                    <input  type="checkbox" data-value="{{@key}}" {{checked (includes
                         ../system.characteristics.choices @key)}}>
                     {{this}}
                 </div>
@@ -14,57 +14,91 @@
         </div>
     </div>
 
+    <div class="sheet-list">
+        <div class="list-header row-content">
+            <div class="group small" data-tooltip-direction="LEFT" data-tooltip="IMPMAL.GroupSelectionTooltip">G</div>
+            <div class="list-name">{{localize "IMPMAL.Skill"}}</div>
+            <div>{{localize "IMPMAL.Spec"}}</div>
+            <div class="list-controls">
+            <a class="list-control" data-path="system.skills" data-action="listCreate"><i class="fa-solid fa-plus"></i></a>
+            </div>
+        </div>
+        <div class="list-content">
+            {{#each system.skills.list}}
+                <div class="list-row" data-index="{{@key}}" data-path="system.skills">
+                    <div class="row-content">
+                        <div class="small">
+                            <input  class="centered" type="text" data-action="editList" data-ipath="group" value="{{this.group}}">
+                        </div>
+                        <div class="list-name">
+                            <select  data-action="editList" data-ipath="skill">
+                                {{selectOptions (config "skills") selected=this.skill blank=""}}
+                            </select>
+                        </div>
+                        <div>
+                            <input  class="centered" type="text" data-action="editList" data-ipath="spec" value="{{this.spec}}">
+                        </div>
+                        <div class="list-controls">
+                            <a class="list-control" data-action="listDelete"><i class="fa-solid fa-xmark"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+
+
     {{> documentReference label="IMPMAL.TableFaction" path="system.factionTable" document=system.factionTable}}
 
 
-    
-                <div class="sheet-list">
-                    <div class="list-header row-content">
-                        <div class="list-name">{{localize "IMPMAL.Equipment"}}</div>
-                        <div class="list-controls">
-                        </div>
-                    </div>
-                    <div class="list-content">
-                        {{#each equipment}}
-                            <div class="list-row" data-index="{{@key}}" data-path="system.equipment">
-                                <div class="row-content">
-                                    <div class="list-name">
-                                        <img src="{{this.img}}">
-                                        <div class="label">{{this.name}}</div>
-                                    </div>
-                                    <div class="list-controls">
-                                        <a class="list-control" data-action="editDiff"><i class="fa-solid fa-file-plus-minus"></i></a>
-                                        <a class="list-control" data-action="listDelete"><i class="fa-solid fa-xmark"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        {{/each}}
-                    </div>
-                </div>
 
-                <div class="sheet-list">
-                    <div class="list-header row-content">
-                        <div class="list-name">{{localize "IMPMAL.Talents"}}</div>
-                        <div class="list-controls">
+        <div class="sheet-list">
+            <div class="list-header row-content">
+                <div class="list-name">{{localize "IMPMAL.Equipment"}}</div>
+                <div class="list-controls">
+                </div>
+            </div>
+            <div class="list-content">
+                {{#each equipment}}
+                    <div class="list-row" data-index="{{@key}}" data-path="system.equipment">
+                        <div class="row-content">
+                            <div class="list-name">
+                                <img src="{{this.img}}">
+                                <div class="label">{{this.name}}</div>
+                            </div>
+                            <div class="list-controls">
+                                <a class="list-control" data-action="editDiff"><i class="fa-solid fa-file-plus-minus"></i></a>
+                                <a class="list-control" data-action="listDelete"><i class="fa-solid fa-xmark"></i></a>
+                            </div>
                         </div>
                     </div>
-                    <div class="list-content">
-                        {{#each talents}}
-                            <div class="list-row" data-index="{{@key}}" data-path="system.talents">
-                                <div class="row-content">
-                                    <div class="list-name">
-                                        <img src="{{this.img}}">
-                                        <div class="label">{{this.name}}</div>
-                                    </div>
-                                    <div class="list-controls">
-                                        <a class="list-control" data-action="editDiff"><i class="fa-solid fa-file-plus-minus"></i></a>
-                                        <a class="list-control" data-action="listDelete"><i class="fa-solid fa-xmark"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        {{/each}}
-                    </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="sheet-list">
+            <div class="list-header row-content">
+                <div class="list-name">{{localize "IMPMAL.Talents"}}</div>
+                <div class="list-controls">
                 </div>
+            </div>
+            <div class="list-content">
+                {{#each talents}}
+                    <div class="list-row" data-index="{{@key}}" data-path="system.talents">
+                        <div class="row-content">
+                            <div class="list-name">
+                                <img src="{{this.img}}">
+                                <div class="label">{{this.name}}</div>
+                            </div>
+                            <div class="list-controls">
+                                <a class="list-control" data-action="editDiff"><i class="fa-solid fa-file-plus-minus"></i></a>
+                                <a class="list-control" data-action="listDelete"><i class="fa-solid fa-xmark"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
 
 
 

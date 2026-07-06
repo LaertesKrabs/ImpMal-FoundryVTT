@@ -60,7 +60,8 @@ export class SkillsModel extends foundry.abstract.DataModel
     static migrateData(source) {
         super.migrateData(source);
 
-        this.migrateFaultySkills(source)
+        this.migrateFaultySkills(source);
+        return source;
     }
 
     static migrateFaultySkills(source) {

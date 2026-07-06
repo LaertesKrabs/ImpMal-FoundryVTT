@@ -76,7 +76,7 @@ export class OpposedTestResult
         let _format = (key) => 
         {
             let str = [];
-            return `${HandlebarsHelpers.numberFormat(this._tooltips.damage[key].value, {hash : {sign: true}})} (${game.i18n.localize(this._tooltips.damage[key].label)})`;
+            return `${foundry.applications.handlebars.numberFormat(this._tooltips.damage[key].value, {hash : {sign: true}})} (${game.i18n.localize(this._tooltips.damage[key].label)})`;
         }
 
 

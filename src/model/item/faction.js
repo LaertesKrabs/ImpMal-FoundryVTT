@@ -28,7 +28,7 @@ export class FactionModel extends DualItemModel
             influence : new fields.EmbeddedDataField(ItemInfluenceModel, {}, {name : "influence", parent : schema.character}),
             talents : new fields.EmbeddedDataField(ChoiceModel, {}, {name : "talents", parent : schema.character}),
             equipment : new fields.EmbeddedDataField(ChoiceModel, {}, {name : "equipment", parent : schema.character}),
-            solars : new fields.NumberField(),
+            solars : new fields.NumberField({initial: 0}),
             duty : new fields.EmbeddedDataField(DeferredReferenceListModel, {}, {name : "duty", parent : schema.character}),
         });
         return schema;

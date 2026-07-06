@@ -57,7 +57,7 @@ class RoleSpecialisationsModel extends DocumentReferenceListModel
     {
         let fields = foundry.data.fields;
         let schema = super.defineSchema();
-        schema.value = new fields.NumberField();
+        schema.value = new fields.NumberField({initial: 0});
         schema.keys = new fields.ArrayField(new fields.StringField());
         return schema;
     }

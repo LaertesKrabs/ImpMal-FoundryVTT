@@ -14,7 +14,7 @@ export class WeaponModel extends EquippableItemModel
         schema.damage = new fields.EmbeddedDataField(DamageModel);
         schema.traits = new fields.EmbeddedDataField(TraitListModel);
         schema.ammo = new fields.EmbeddedDataField(DocumentReferenceModel);
-        schema.ammoCost = new fields.NumberField();
+        schema.ammoCost = new fields.NumberField({initial: 0});
         schema.attackType = new fields.StringField();
         schema.category = new fields.StringField();
         schema.spec = new fields.StringField();

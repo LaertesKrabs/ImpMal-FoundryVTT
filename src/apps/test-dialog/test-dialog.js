@@ -211,9 +211,9 @@ export class TestDialog extends WarhammerRollDialogV2
         let breakdown = super.createBreakdown();
         let difficulty = game.impmal.config.difficulties[this.fields.difficulty];
         breakdown.base = `<p>${game.i18n.localize("IMPMAL.Base")}: @BASE</p>`;
-        breakdown.modifier = `<p>${game.i18n.localize("IMPMAL.Modifier")}: ${HandlebarsHelpers.numberFormat(this.fields.modifier, {hash : {sign: true}})}</p>`;
-        breakdown.difficulty = `<p>${game.i18n.localize("IMPMAL.Difficulty")}: ${game.i18n.localize(difficulty.name)} (${HandlebarsHelpers.numberFormat(difficulty.modifier, {hash : {sign: true}})})</p>`;
-        breakdown.SL = `<p>${game.i18n.localize("IMPMAL.SL")}: ${HandlebarsHelpers.numberFormat(this.fields.SL, {hash : {sign: true}})}</p>`;
+        breakdown.modifier = `<p>${game.i18n.localize("IMPMAL.Modifier")}: ${foundry.applications.handlebars.numberFormat(this.fields.modifier, {hash : {sign: true}})}</p>`;
+        breakdown.difficulty = `<p>${game.i18n.localize("IMPMAL.Difficulty")}: ${game.i18n.localize(difficulty.name)} (${foundry.applications.handlebars.numberFormat(difficulty.modifier, {hash : {sign: true}})})</p>`;
+        breakdown.SL = `<p>${game.i18n.localize("IMPMAL.SL")}: ${foundry.applications.handlebars.numberFormat(this.fields.SL, {hash : {sign: true}})}</p>`;
         breakdown.advantage = `<p>${game.i18n.localize("IMPMAL.Advantage")}: ${this.advantage} ${this.userEntry.state == "adv" ? "(" + "Forced" + ")" : "" }</p>`;
         breakdown.disadvantage = `<p>${game.i18n.localize("IMPMAL.Disadvantage")}: ${this.disadvantage} ${this.userEntry.state == "dis" ? "(" + "Forced" + ")" : "" }</p>`;
 

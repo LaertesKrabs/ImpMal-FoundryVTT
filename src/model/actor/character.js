@@ -221,6 +221,7 @@ export class CharacterModel extends StandardActorModel
                 max : 0
             };
         }
+        return data;
     }
 }
 

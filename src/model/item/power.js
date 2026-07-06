@@ -11,7 +11,7 @@ export class PowerModel extends StandardItemModel
         let schema = super.defineSchema();
         schema.discipline = new fields.StringField();
         schema.minorSpecialisation = new fields.StringField(); // If minor, optionally apply specialisation
-        schema.rating = new fields.NumberField();
+        schema.rating = new fields.NumberField({initial: 0});
         schema.difficulty = new fields.StringField();
         schema.range = new fields.StringField();
         schema.target = new fields.StringField();

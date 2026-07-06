@@ -16,8 +16,8 @@ export class PatronModel extends BaseActorModel
         schema.demeanor = new fields.StringField();
         schema.payment = new fields.SchemaField({
             grade : new fields.StringField(),
-            payOverride : new fields.NumberField(),
-            gradeModifier : new fields.NumberField()
+            payOverride : new fields.NumberField({initial: 0}),
+            gradeModifier : new fields.NumberField({initial: 0})
         });
         return schema;
     }

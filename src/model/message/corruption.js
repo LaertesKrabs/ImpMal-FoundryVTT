@@ -6,7 +6,7 @@ export class CorruptionMessageModel extends WarhammerMessageModel
         let schema = {};
 
         schema.exposure = new fields.StringField()
-        schema.corruption = new fields.NumberField()
+        schema.corruption = new fields.NumberField({initial: 0})
         schema.source = new fields.StringField()
         schema.skill = new fields.StringField()
 

@@ -7,8 +7,8 @@ export class RewardMessageModel extends WarhammerMessageModel
         let fields = foundry.data.fields;
         let schema = {};
 
-        schema.xp = new fields.NumberField();
-        schema.solars = new fields.NumberField();
+        schema.xp = new fields.NumberField({initial: 0});
+        schema.solars = new fields.NumberField({initial: 0});
         schema.patron = new fields.EmbeddedDataField(DocumentReferenceModel)
         schema.reason = new fields.StringField();
 

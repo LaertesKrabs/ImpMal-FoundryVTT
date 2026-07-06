@@ -51,14 +51,14 @@ export class StandardCombatModel extends foundry.abstract.DataModel
               }
         }});
         schema.armourModifier = new fields.NumberField({initial : 0});
-        schema.initiative = new fields.NumberField()
+        schema.initiative = new fields.NumberField({initial: 0})
         schema.wounds = new fields.SchemaField({
             value : new fields.NumberField({initial : 0, min : 0}),
-            max : new fields.NumberField(),
+            max : new fields.NumberField({initial: 0}),
         });
         schema.criticals = new fields.SchemaField({
             value : new fields.NumberField({initial : 0}),
-            max : new fields.NumberField(),
+            max : new fields.NumberField({initial: 0}),
         });
         schema.action = new fields.StringField({});
         return schema;
@@ -261,7 +261,7 @@ export class CharacterCombatModel extends StandardCombatModel
     static defineSchema() 
     {
         let schema = super.defineSchema();
-        schema.superiority = new fields.NumberField();
+        schema.superiority = new fields.NumberField({initial: 0});
         return schema;
     }
 }
@@ -271,7 +271,7 @@ export class NPCCombatModel extends StandardCombatModel
     static defineSchema() 
     {
         let schema = super.defineSchema();
-        schema.resolve = new fields.NumberField();
+        schema.resolve = new fields.NumberField({initial: 0});
         schema.armour = new fields.SchemaField({
             formula : new fields.StringField(),
             value : new fields.NumberField({min : 0}),

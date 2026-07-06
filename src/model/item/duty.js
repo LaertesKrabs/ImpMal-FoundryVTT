@@ -29,7 +29,7 @@ export class DutyModel extends DualItemModel
             specialisations : ListModel.createListModel(new fields.SchemaField({
                 skill : new fields.StringField(),
                 name : new fields.StringField(),
-                advances : new fields.NumberField()
+                advances : new fields.NumberField({initial: 0})
             }), {}, {name : "specialisations"}),
             influence : new fields.EmbeddedDataField(ItemInfluenceModel, {}, {name : "influence", parent : schema.character}),
             items : new fields.EmbeddedDataField(ChoiceModel, {}, {name : "items"}),

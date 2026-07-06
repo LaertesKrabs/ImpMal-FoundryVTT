@@ -13,7 +13,7 @@ export class ProtectionModel extends EquippableItemModel
         let schema = super.defineSchema();
         schema.traits = new fields.EmbeddedDataField(TraitListModel),
         schema.category = new fields.StringField();
-        schema.armour = new fields.NumberField();
+        schema.armour = new fields.NumberField({initial: 0});
         schema.locations = new fields.EmbeddedDataField(HitLocationsModel);
         schema.damage = new fields.ObjectField({});
         schema.destroyed = new fields.ObjectField({});

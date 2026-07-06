@@ -2,7 +2,7 @@
   "id": "impmal",
   "title": "Warhammer 40,000: Imperium Maledictum",
   "description": "In the grim darkness of the 41st millennium, players take on the role of citizens of the Imperium in service to a powerful patron, drawing them into tales focused on intrigue, betrayal, and conspiracy",
-  "version": "4.0.1",
+  "version": "@VERSION",
   "compatibility" : {
     "minimum" : 14,
     "verified" : 14,
@@ -57,12 +57,49 @@
     "type": 1,
     "diagonals": 4
   },
+  "documentTypes" : {
+    "Actor": {
+      "character": {},
+      "patron": {},
+      "npc": {},
+      "vehicle": {}
+    },
+    "Item": {
+      "boonLiability": {},
+      "origin": {},
+      "faction": {},
+      "role": {},
+      "talent": {},
+      "duty": {},
+      "specialisation": {},
+      "weapon": {},
+      "ammo": {},
+      "modification": {},
+      "protection": {},
+      "forceField": {},
+      "equipment": {},
+      "augmetic": {},
+      "power": {},
+      "corruption": {},
+      "critical": {},
+      "injury": {},
+      "trait": {},
+      "pack": {}
+    },
+    "ChatMessage" : {
+      "test" : {},
+      "opposed" : {},
+      "reward" : {},
+      "item" : {},
+      "corruption" : {}
+    }
+  },
   "primaryTokenAttribute": null,
   "secondaryTokenAttribute": null,
   "url": "https://github.com/moo-man/ImpMal-FoundryVTT",
   "socket": true,
   "manifest": "https://github.com/moo-man/ImpMal-FoundryVTT/releases/latest/download/system.json",
-  "download": "https://github.com/moo-man/ImpMal-FoundryVTT/releases/download/4.0.1/impmal.zip",
+  "download": "https://github.com/moo-man/ImpMal-FoundryVTT/releases/download/@VERSION/impmal.zip",
   "license": "LICENSE.txt"
 }
 
