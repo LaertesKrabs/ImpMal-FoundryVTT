@@ -5,6 +5,7 @@
     "TYPES.Actor.npc" : "Non-Player Character",
     "TYPES.Actor.patron" : "Patron",
     "TYPES.Actor.vehicle" : "Vehicle",
+    "TYPES.Actor.familiar" : "Familiar",
 
     "TYPES.Item.boonLiability" : "Boon / Liability",
     "TYPES.Item.origin" : "Origin",
@@ -229,6 +230,32 @@
         "ShowPassengers" : "Show Passenger Tokens"
     },
 
+    "IMPMAL.CombatInstinct" : "Combat Instinct",
+    "IMPMAL.PreservationInstinct" : "Preservation Instinct",
+
+    "IMPMAL.Instincts" : "Instincts",
+    "IMPMAL.Instinct" : {
+        "Name" : {
+            "melee" : "Melee",
+            "ranged" : "Ranged",
+            "stalker" : "Stalker",
+            "fearless" : "Fearless",
+            "support" : "Support",
+            "brave" : "Brave",
+            "wary" : "Wary",
+            "coward" : "Coward"
+        },
+        "Description" : {
+            "melee" : "Will Charge the nearest enemy or Defend their Master.",
+            "ranged" : "Shoots nearest enemy, will manoeuvre to maintain optimal distance.",
+            "stalker" : "Takes Actions to Hide, Attacks from Stealth, Disengages to repeat.",
+            "fearless" : "Fights to the death unless ordered to withdraw.",
+            "brave" : "Attempts to withdraw once it loses half its Wounds.",
+            "wary" : "Attempts to withdraw after losing a quarter of its Wounds.",
+            "support" : "Avoids Combat, focuses on Helping Characters (Such as Healing or Repairing)",
+            "coward" : "Attempts to withdraw if threatened or loses any of its Wounds."
+        }
+    },    
     "IMPMAL.CountEveryBullet" : "Count Every Bullet",
     "IMPMAL.CountEveryBulletHint" : "Use 'Counting Every Bullet' optional rule defined on page 314.",
     "IMPMAL.Corruption" : "Corruption",

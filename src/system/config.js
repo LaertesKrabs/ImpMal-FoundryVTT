@@ -391,6 +391,57 @@ const IMPMAL = {
         major : "IMPMAL.Major"
     },
 
+    instinctTypes:  {
+        combat : "IMPMAL.CombatInstinct",
+        preservation: "IMPMAL.PreservationInstinct",
+    },
+
+    combatInstincts:  {
+        "melee" : {
+            name : "IMPMAL.Instinct.Name.melee",
+            description : "IMPMAL.Instinct.Description.melee",
+            key : "melee"
+        },
+        "ranged" : {
+            name : "IMPMAL.Instinct.Name.ranged",
+            description : "IMPMAL.Instinct.Description.ranged",
+            key : "ranged"
+        },
+        "stalker" : {
+            name : "IMPMAL.Instinct.Name.stalker",
+            description : "IMPMAL.Instinct.Description.stalker",
+            key : "stalker"
+        },
+        "support" : {
+            name : "IMPMAL.Instinct.Name.support",
+            description : "IMPMAL.Instinct.Description.support",
+            key : "support"
+        }
+    },
+
+    preservationInstincts:  {
+        "fearless" : {
+            name : "IMPMAL.Instinct.Name.fearless",
+            description : "IMPMAL.Instinct.Description.fearless",
+            key : "fearless"
+        },
+        "brave" : {
+            name : "IMPMAL.Instinct.Name.brave",
+            description : "IMPMAL.Instinct.Description.brave",
+            key : "brave"
+        },
+        "wary" : {
+            name : "IMPMAL.Instinct.Name.wary",
+            description : "IMPMAL.Instinct.Description.wary",
+            key : "wary"
+        },
+        "coward" : {
+            name : "IMPMAL.Instinct.Name.coward",
+            description : "IMPMAL.Instinct.Description.coward",
+            key : "coward"
+        }
+    },
+
     coverTypes : {
         "" : "",
         lightCover : "IMPMAL.LightCover",

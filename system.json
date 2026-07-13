@@ -62,7 +62,8 @@
       "character": {},
       "patron": {},
       "npc": {},
-      "vehicle": {}
+      "vehicle": {},
+      "familiar": {}
     },
     "Item": {
       "boonLiability": {},
