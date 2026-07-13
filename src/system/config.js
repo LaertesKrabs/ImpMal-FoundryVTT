@@ -541,6 +541,8 @@ const IMPMAL = {
         rollTable : "IMPMAL.TriggerRollTable",
         equipToggle : "IMPMAL.TriggerEquipToggle",
 
+        targeted : "IMPMAL.TriggerTargeted",
+
         startRound : "IMPMAL.TriggerStartRound",
         endRound : "IMPMAL.TriggerEndRound",
         startTurn : "IMPMAL.TriggerStartTurn",

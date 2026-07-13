@@ -114,6 +114,7 @@
     "IMPMAL.Characteristic" : "Characteristic",
     "IMPMAL.CharacteristicTest" : "{characteristic} Test",
     "IMPMAL.Characteristics" : "Characteristics",
+    "IMPMAL.CharacteristicChoices" : "Characteristic Choices",
     "IMPMAL.Charge" : "Charge",
     "IMPMAL.ChoiceAND" : "AND",
     "IMPMAL.ChoiceOR" : "OR",
@@ -389,6 +390,8 @@
     "IMPMAL.Good" : "Good",
     "IMPMAL.Grapple" : "Grapple",
     "IMPMAL.GrenadesExplosives" : "Grenades & Explosives",
+    "IMPMAL.Group" : "Group",
+    "IMPMAL.GroupSelectionTooltip" : "Grouping: Each row represents a different choice. To group choices together, give them the same group value.",
     "IMPMAL.Hair" : "Hair",
     "IMPMAL.HairColour" : "Hair Colour",
     "IMPMAL.HairStyle" : "Hair Style",
@@ -667,6 +670,7 @@
     "IMPMAL.Source" : "Source",
     "IMPMAL.Special" : "Special",
     "IMPMAL.Specialisation" : "Specialisation",
+    "IMPMAL.Spec" : "Spec.",
     "IMPMAL.Specialisations" : "Specialisations",
     "IMPMAL.SpecialisationAdvances" : "Specialisation Advances",
     "IMPMAL.Specialised" : "Specialised",
@@ -787,6 +791,7 @@
     "IMPMAL.TriggerEndTurn" : "End Turn",
     "IMPMAL.TriggerRollTable" : "Roll Table",
     "IMPMAL.TriggerEquipToggle" : "Equip Toggle",
+    "IMPMAL.TriggerTargeted" : "Targeted",
     "IMPMAL.Troop" : "Troop",
     "IMPMAL.Trusted" : "Trusted",
     "IMPMAL.TwoHanded" : "Two Handed",
@@ -1037,6 +1042,9 @@
                         "characterisics" : {
                             "base" : {
                                 "label" : "Characteristic"
+                            },
+                            "value" : {
+                                "label" : "Value"
                             }
                         }
                     }

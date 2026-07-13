@@ -31,6 +31,14 @@ export class BaseActorModel extends BaseWarhammerActorModel
         }
     }
 
+    async _preUpdate(data, options, user)
+    {
+        if (data?.flags?.impmal?.opposed)
+        {
+            this.parent.runScripts("targeted", {test : game.messages.get(data.flags.impmal.opposed)?.system.test});
+        }
+    }
+
     initialize() 
     {
 

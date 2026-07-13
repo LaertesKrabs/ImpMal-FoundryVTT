@@ -539,6 +539,7 @@ body.impmal-scan {
     background: url(./assets/ui/box-background.webp) repeat;
     margin: 10px;
     margin-left: 3px;
+    position: relative;
 
     a.custom-link,
     a.inline-roll,
@@ -560,6 +561,14 @@ body.impmal-scan {
       margin: 0;
     }
 
+    .box-header-img {
+      position: absolute;
+      left: 0;
+      margin-inline: auto;
+      right: 0;
+      top: -50px;
+    }
+
     &.light {
       outline: none;
       color: black;
@@ -576,6 +585,16 @@ body.impmal-scan {
         border-right: none;
         border-left: none;
         color: var(--impmal-lightblue)
+      }
+
+      &.grid {
+        background: url(./assets/ui/grid-bg.webp) repeat;
+        .box-header,
+        h1,h2,h3,h4,h5 {
+          color: black;
+          font-weight: normal;
+          text-align: center;
+        }
       }
 
       .box-header {

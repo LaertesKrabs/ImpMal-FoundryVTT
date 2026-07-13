@@ -1,7 +1,10 @@
 <section class="tab {{tab.cssClass}}" data-group="primary" data-tab="{{tab.id}}">
-    {{formGroup fields.character.fields.characteristics.fields.base value=source.system.character.characteristics.base choices=(config "characteristics") label="IMPMAL.Characteristic" localize=true}}
+    <div class="form-group">
+        {{formField fields.character.fields.characteristics.fields.base value=source.system.character.characteristics.base choices=(config "characteristics") label="IMPMAL.Characteristic" localize=true}}
+        {{formField fields.character.fields.characteristics.fields.value value=source.system.character.characteristics.value label="IMPMAL.Value" localize=true}}
+    </div>
     <div class="form-group stacked input-list characteristics">
-        <label>{{localize "IMPMAL.Characteristics"}}</label>
+        <label>{{localize "IMPMAL.CharacteristicChoices"}}</label>
         <div class="fields" data-path="system.character.characteristics.choices">
             {{#each (config "characteristics")}}
                 <div>

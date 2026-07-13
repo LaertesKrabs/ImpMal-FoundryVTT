@@ -41,4 +41,19 @@ export class SpecialisationModel extends StandardItemModel
         return data;
     }
 
+    async toEmbed(config, options)
+    {
+
+        let html = `
+            <p>@UUID[${this.parent.uuid}]{${config.label || this.parent.name}} ${this.restricted ? " <strong>(Restricted)</strong>" : ""}
+            : ${this.notes.player.replace("<p>", "")}
+            ${game.user.isGM ? this.notes.gm : ""}
+        `;
+
+        let div = document.createElement("div");
+        div.style = config.style;
+        div.innerHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(html, {relativeTo : this.parent, async: true, secrets : options.secrets});
+        return div;
+    }
+
 }
