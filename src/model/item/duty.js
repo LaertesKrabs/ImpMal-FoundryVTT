@@ -32,8 +32,8 @@ export class DutyModel extends DualItemModel
                 advances : new fields.NumberField({initial: 0})
             }), {}, {name : "specialisations"}),
             influence : new fields.EmbeddedDataField(ItemInfluenceModel, {}, {name : "influence", parent : schema.character}),
-            items : new fields.EmbeddedDataField(ChoiceModel, {}, {name : "items"}),
-            solars : new fields.NumberField({min : 0}, {}, {name : "solars"}),
+            items : new fields.EmbeddedDataField(ChoiceModel, {}, {name : "items", parent : schema.character}),
+            solars : new fields.NumberField({min : 0}, {name : "solars", parent : schema.character}),
         });
         return schema;
     }
@@ -170,7 +170,7 @@ export class DutyModel extends DualItemModel
         {
 
             html = `
-                <h5>@UUID[${this.parent.uuid}]{${config.label || this.parent.name}}</h5>
+                <${config.header ? config.header : "h5"}>@UUID[${this.parent.uuid}]{${config.label || this.parent.name}}</h5>
                 ${this.patron.notes}
             `;
 
@@ -216,7 +216,7 @@ export class DutyModel extends DualItemModel
         {
 
             html = `
-                <h4 data-no-toc=true>@UUID[${this.parent.uuid}]{${this.parent.name}}</h4>
+                <${config.header ? config.header : "h4"} data-no-toc=true>@UUID[${this.parent.uuid}]{${this.parent.name}}</h4>
                 ${this.character.notes}
             `;
         }

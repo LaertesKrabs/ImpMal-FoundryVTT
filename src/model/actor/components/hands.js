@@ -95,7 +95,7 @@ export class HandsModel extends foundry.abstract.DataModel
             item.system.onEquipToggle(false);
         }
 
-        return {"system.hands" : update};
+        return update;
     }   
 
     isHolding(id)

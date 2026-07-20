@@ -425,111 +425,117 @@ body.impmal-scan {
   }
 }
 
-@mixin editor-content() {
-
-  font-family: var(--type-font);
-
-  @include link-styles();
-
-  ul li::marker {
-    font-family: OnlySkulls;
-    content: "0";
-    font-style: normal;
-  }
-
-  ul li>* {
-    margin-left: 5px;
-  }
-
-  .like-h1,
-  h1 {
-    font-family: "Novarese";
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--impmal-darkblue);
-    border-bottom: 0px;
-  }
-
-  .like-h2,
-  h2 {
-    font-family: "Novarese";
-    text-transform: uppercase;
-    font-size: var(--font-size-32);
-    border-bottom: 2px solid var(--impmal-darkblue);
-    font-weight: bold;
-    color: var(--impmal-darkblue);
-  }
-
-  .like-h3,
-  h3 {
-    margin: 0 0 0.2rem;
-    font-family: "Novarese";
-    font-variant: small-caps;
-    font-size: var(--font-size-28);
-    font-weight: bold;
-    color: var(--impmal-lightblue);
-    border-bottom: 0px;
-  }
-
-  // This is a bit problematic as .journal-entry-page is the toplevel class in the page editor (which includes the header)
-  .like-h4,
-  h4:not(.window-title) {
-    margin: 0 0 0.2rem;
-    font-family: "Novarese";
-    text-transform: uppercase;
-    font-size: var(--font-size-24);
-    color: var(--impmal-lightblue);
-  }
-
-  .like-h5,
-  h5 {
-    margin: 0 0 0.5rem;
-    font-family: "Novarese";
-    text-transform: uppercase;
-    font-size: var(--font-size-20);
-    color: var(--impmal-lightblue);
-    font-weight: unset
-  }
-
-  .like-h6,
-  h6 {
-    margin: 0 0 0.5rem;
-    font-family: "Novarese";
-    font-size: var(--font-size-18);
-  }
-
-  .blue {
-    color: var(--impmal-lightblue);
-  }
-
-  hr {
-    color: var(--impmal-lightblue);
-    background-image: linear-gradient(90deg, transparent 0%, var(--impmal-lightblue) 50%, transparent 100%);
-  }
-
-
-  section.hook {
-    background-clip: padding-box;
-    padding: 10px;
-    border-top: 20px solid transparent;
-    border-image: url(./assets/ui/hook-top.webp);
-    border-image-slice: 100 0% 0% 0%;
-    filter: drop-shadow(5px 5px 8px black);
-    margin: 10px;
-    background: url(./assets/ui/hook-bg.webp);
-
-    .hook-title {
-      font-weight: bold;
-      text-transform: uppercase;
-      text-align: center;
-      font-family: "Novarese";
-      font-size: var(--font-size-24);
+@mixin impmal-table() {
+  table.impmal {
+    @include link-styles();
+    p {
+      margin: 0px;
     }
 
-  }
+    .space-bg {
+      // font-variant: small-caps;
+      // color: white;
+      // font-family: "Novarese";
+      // background-image: url(./assets/ui/table-header.webp);
+      // background-size:contain;
+      background-color: red;
+    }
 
+    thead {
+
+      .inline-roll,
+      i.fas,
+      a.content-link {
+        color: white
+      }
+
+      .title {
+        text-align: center;
+        font-family: "Novarese";
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: var(--font-size-24);
+        color: white;
+        background-image: url(./assets/ui/table-header.webp);
+        background-size: cover;
+
+        >td {
+          border: 2px solid var(--impmal-darkblue);
+          border-bottom: 1px solid white;
+        }
+      }
+
+      .subheader {
+        text-align: center;
+        font-family: "Novarese";
+        font-variant: small-caps;
+        font-size: var(--font-size-18);
+        font-weight: bold;
+        color: white;
+        background-image: url(./assets/ui/table-header.webp);
+        background-size: cover;
+
+        >td {
+          border-right: 1px solid white;
+
+          &:first-of-type {
+            border-left: 2px solid var(--impmal-darkblue);
+          }
+
+          &:last-of-type {
+            border-right: 2px solid var(--impmal-darkblue);
+          }
+        }
+      }
+    }
+
+    .separator {
+      font-family: "Novarese";
+      background-image: url(./assets/ui/table-header.webp);
+      background-size: cover;
+      font-variant: small-caps;
+      font-size: var(--font-size-18);
+      font-weight: bold;
+      color: white;
+    }
+
+    tbody {
+
+      tr {
+        background-color: white;
+
+        &:nth-of-type(even) {
+          background-color: #e9ecec;
+        }
+
+        td:first-of-type:not(:only-child) {
+          font-weight: bold;
+          width: 20%
+        }
+      }
+
+      td {
+        border: 1px solid black;
+        text-align: center;
+        color: black;
+
+      }
+
+      &.no-center {
+        td {
+          text-align: left;
+          padding-left: 5px;
+        }
+
+        td:first-of-type:not(:only-child) {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@mixin box-text() { 
   section.box-text {
     outline: 3px solid var(--impmal-grey);
     border: 20px solid transparent;
@@ -672,6 +678,115 @@ body.impmal-scan {
         }
       }
     }
+  }
+}
+
+@mixin editor-content() {
+
+  font-family: var(--type-font);
+
+  @include link-styles();
+  @include impmal-table();
+  @include box-text();
+
+
+  ul li::marker {
+    font-family: OnlySkulls;
+    content: "0";
+    font-style: normal;
+  }
+
+  ul li>* {
+    margin-left: 5px;
+  }
+
+  .like-h1,
+  h1 {
+    font-family: "Novarese";
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--impmal-darkblue);
+    border-bottom: 0px;
+  }
+
+  .like-h2,
+  h2 {
+    font-family: "Novarese";
+    text-transform: uppercase;
+    font-size: var(--font-size-32);
+    border-bottom: 2px solid var(--impmal-darkblue);
+    font-weight: bold;
+    color: var(--impmal-darkblue);
+  }
+
+  .like-h3,
+  h3 {
+    margin: 0 0 0.2rem;
+    font-family: "Novarese";
+    font-variant: small-caps;
+    font-size: var(--font-size-28);
+    font-weight: bold;
+    color: var(--impmal-lightblue);
+    border-bottom: 0px;
+  }
+
+  // This is a bit problematic as .journal-entry-page is the toplevel class in the page editor (which includes the header)
+  .like-h4,
+  h4:not(.window-title) {
+    margin: 0 0 0.2rem;
+    font-family: "Novarese";
+    text-transform: uppercase;
+    font-size: var(--font-size-24);
+    color: var(--impmal-lightblue);
+  }
+
+  .like-h5,
+  h5 {
+    margin: 0 0 0.5rem;
+    font-family: "Novarese";
+    text-transform: uppercase;
+    font-size: var(--font-size-20);
+    color: var(--impmal-lightblue);
+    font-weight: unset
+  }
+
+  .like-h6,
+  h6 {
+    margin: 0 0 0.5rem;
+    font-family: "Novarese";
+    font-size: var(--font-size-18);
+  }
+
+  .blue {
+    color: var(--impmal-lightblue);
+  }
+
+  hr {
+    color: var(--impmal-lightblue);
+    background-image: linear-gradient(90deg, transparent 0%, var(--impmal-lightblue) 50%, transparent 100%);
+  }
+
+
+  section.hook {
+    background-clip: padding-box;
+    padding: 10px;
+    border-top: 20px solid transparent;
+    border-image: url(./assets/ui/hook-top.webp);
+    border-image-slice: 100 0% 0% 0%;
+    filter: drop-shadow(5px 5px 8px black);
+    margin: 10px;
+    background: url(./assets/ui/hook-bg.webp);
+
+    .hook-title {
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      font-family: "Novarese";
+      font-size: var(--font-size-24);
+    }
+
   }
 
   details {
@@ -816,115 +931,13 @@ body.impmal-scan {
 
   }
 
-  table.impmal {
-    p {
-      margin: 0px;
-    }
-
-    .space-bg {
-      // font-variant: small-caps;
-      // color: white;
-      // font-family: "Novarese";
-      // background-image: url(./assets/ui/table-header.webp);
-      // background-size:contain;
-      background-color: red;
-    }
-
-    thead {
-
-      .inline-roll,
-      i.fas,
-      a.content-link {
-        color: white
-      }
-
-      .title {
-        text-align: center;
-        font-family: "Novarese";
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: var(--font-size-24);
-        color: white;
-        background-image: url(./assets/ui/table-header.webp);
-        background-size: cover;
-
-        >td {
-          border: 2px solid var(--impmal-darkblue);
-          border-bottom: 1px solid white;
-        }
-      }
-
-      .subheader {
-        text-align: center;
-        font-family: "Novarese";
-        font-variant: small-caps;
-        font-size: var(--font-size-18);
-        font-weight: bold;
-        color: white;
-        background-image: url(./assets/ui/table-header.webp);
-        background-size: cover;
-
-        >td {
-          border-right: 1px solid white;
-
-          &:first-of-type {
-            border-left: 2px solid var(--impmal-darkblue);
-          }
-
-          &:last-of-type {
-            border-right: 2px solid var(--impmal-darkblue);
-          }
-        }
-      }
-    }
-
-    .separator {
-      font-family: "Novarese";
-      background-image: url(./assets/ui/table-header.webp);
-      background-size: cover;
-      font-variant: small-caps;
-      font-size: var(--font-size-18);
-      font-weight: bold;
-      color: white;
-    }
-
-    tbody {
-
-      tr {
-        background-color: white;
-
-        &:nth-of-type(even) {
-          background-color: #e9ecec;
-        }
-
-        td:first-of-type:not(:only-child) {
-          font-weight: bold;
-          width: 20%
-        }
-      }
-
-      td {
-        border: 1px solid black;
-        text-align: center;
-      }
-
-      &.no-center {
-        td {
-          text-align: left;
-          padding-left: 5px;
-        }
-
-        td:first-of-type:not(:only-child) {
-          text-align: center;
-        }
-      }
-    }
-  }
 }
 
 @mixin editor-content-alt() {
 
   @include link-styles(var(--impmal-lightgreen));
+  @include impmal-table();
+  @include box-text();
 
   font-family: var(--type-font);
 

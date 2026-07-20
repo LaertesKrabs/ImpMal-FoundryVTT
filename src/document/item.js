@@ -60,7 +60,16 @@ export class ImpMalItem extends ImpMalDocumentMixin(WarhammerItem)
                 
                 let factionOptions = Object.keys(game.impmal.config.factions).filter(faction => faction.match(regex)).map(i => { return {name : game.impmal.config.factions[i], id : i};});
                 
-                let choices = await ItemDialog.create(factionOptions, (factions[key] || 0), {text : "Select Faction(s)", title : this.name});
+                let choices = [];
+                if (factionOptions.length == 1)
+                {
+                    choices = factionOptions;
+                }
+                else 
+                {
+                    let number = (factions[key] || 0);
+                    choices = await ItemDialog.create(factionOptions, (factions[key] || 0), {text : `Select ${number} Faction(s)`, title : this.name});
+                }
 
                 factions[key] = choices.map(i => i.id);
             }

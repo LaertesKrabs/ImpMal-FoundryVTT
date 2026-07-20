@@ -136,6 +136,12 @@ export default class IMItemSheet extends SheetMixin(WarhammerItemSheetV2)
         }
     }
 
+    async _onRender(options)
+    {
+        await super._onRender(options)
+        game.impmal.utility.listeners(this.element);
+    }
+
 
     static _onRollAvailability(ev, target)
     {

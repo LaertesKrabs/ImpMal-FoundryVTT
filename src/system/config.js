@@ -236,6 +236,7 @@ const IMPMAL = {
         wheeled : "IMPMAL.Wheeled",
         tracked : "IMPMAL.Tracked",
         flyer : "IMPMAL.Flyer",
+        hovercraft : "IMPMAL.FlyerHovercraft",
         walker : "IMPMAL.Walker"
     },
 
@@ -576,6 +577,8 @@ const IMPMAL = {
         // preDefenderComputeOpposedDamage : "IMPMAL.TriggerPreDefenderComputeOpposedDamage",
         // postDefenderEvaluateOpposed : "IMPMAL.TriggerDefenderEvaluateOpposed",
 
+        computeDamageAttacker : "IMPMAL.TriggerComputeDamage",
+
         preApplyDamage : "IMPMAL.TriggerPreApplyDamage",
         applyDamage : "IMPMAL.TriggerApplyDamage",
         preTakeDamage : "IMPMAL.TriggerPreTakeDamage",
@@ -661,7 +664,7 @@ const IMPMAL = {
         },
         emergencyLanding : {
             name : "IMPMAL.EmergencyLanding",
-            restriction : function(actor) { return ["flyer"].includes(actor.system.category) }
+            restriction : function(actor) { return ["flyer", "hovercraft"].includes(actor.system.category) }
         },
         evasiveManeuvers : {
             name : "IMPMAL.EvasiveManeuvers",
@@ -936,6 +939,11 @@ const IMPMAL = {
                 }
             }
         },
+        overwatch : {
+            label : "IMPMAL.Overwatch",
+            test : {},
+            execute : ``
+        },
         run : {
             label : "IMPMAL.Run"
         },
@@ -1038,6 +1046,19 @@ const IMPMAL = {
                     options : {
                         activateScript : "return true;"
                     }
+                }]
+            }
+        },
+        unstable : {
+            name : "IMPMAL.Unstable",
+            system : {
+                transferData : {
+                    documentType: "Item"
+                },
+                scriptData : [{
+                    label : "Self Destruct",
+                    trigger : "rollWeaponTest",
+                    script : "if (args.result.fumble) { args.result.text.unstable = '<strong>Unstable</strong>: 5+ on the Fumble Table results in Self Destruction';}",
                 }]
             }
         }

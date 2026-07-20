@@ -130,7 +130,7 @@ export class CharacterModel extends StandardActorModel
     {
         super.computeDerived();
         this.augmetics.max += this.characteristics.tgh.bonus;
-        this.augmetics.value = this.parent.itemTypes.augmetic.length;
+        this.augmetics.value = this.parent.itemTypes.augmetic.filter(i => !i.system.isSlotted && i.system.isEquipped).reduce((cost, augmetic) => cost + augmetic.system.augmeticCost, 0);
         if (this.autoCalc.corruption)
         {
             this.corruption.autoCalc = true;

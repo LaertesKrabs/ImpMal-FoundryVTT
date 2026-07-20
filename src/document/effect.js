@@ -20,7 +20,7 @@ export class ImpMalEffect extends WarhammerActiveEffect
         let transferData = this.system.transferData;
 
         let test;
-        let options = {appendTitle : " - " + this.name, resist : [this.key].concat(this.sourceTest?.item?.type || []), resistingTest : this.sourceTest};
+        let options = {appendTitle : " - " + this.name, resist : [this.key].concat(this.sourceTest?.item?.type || []), resistingTest : this.sourceTest, skipTargets: true};
         if (transferData.avoidTest.value == "item")
         {
             test = await this.actor.setupTestFromItem(this.item.uuid, options);
@@ -140,7 +140,7 @@ export class ImpMalEffect extends WarhammerActiveEffect
     {
         let testData = this.system.sourceData.test;
         let message = game.messages.get(testData.context?.messageId);
-        if (testData)
+        if (!foundry.utils.isEmpty(testData))
         {
             return message ? message.system.test : new (game.impmal.testClasses[testData.class])(testData);
         }

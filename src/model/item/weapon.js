@@ -3,6 +3,7 @@ import { DamageModel } from "./components/damage";
 import { EquippableItemModel } from "./components/equippable";
 import { TraitListModel } from "./components/traits";
 import { ModListModel } from "./modification";
+import { TestDataModel } from "./components/test";
 let fields = foundry.data.fields;
 
 export class WeaponModel extends EquippableItemModel
@@ -13,11 +14,17 @@ export class WeaponModel extends EquippableItemModel
         let schema = super.defineSchema();
         schema.damage = new fields.EmbeddedDataField(DamageModel);
         schema.traits = new fields.EmbeddedDataField(TraitListModel);
+        schema.test = new fields.EmbeddedDataField(TestDataModel);
         schema.ammo = new fields.EmbeddedDataField(DocumentReferenceModel);
         schema.ammoCost = new fields.NumberField({initial: 0});
         schema.attackType = new fields.StringField();
         schema.category = new fields.StringField();
         schema.spec = new fields.StringField();
+        // Skill Override
+        schema.skillOverride = new fields.SchemaField({ 
+            value: new fields.StringField(),
+            spec: new fields.StringField()
+        });
         schema.range = new fields.StringField();
         schema.rangeModifier = new fields.SchemaField({
             value : new fields.NumberField({initial : 0}),
@@ -123,10 +130,10 @@ export class WeaponModel extends EquippableItemModel
 
     getSkill(actor)
     {
-        let skill = this.attackType;
+        // this.skill can specify skill and specialisation to override default
+        let skill = this.skillOverride.value || this.attackType;
         let skillObject = actor.system.skills?.[skill];
-        let skillItem = skillObject?.specialisations.find(i => i.name.slugify() == this.specialisation?.slugify());
-
+        let skillItem = skillObject?.specialisations.find(i => i.name.slugify() == (this.skillOverride.spec || this.specialisation)?.slugify());
         return skillItem ?? skill;
     }
 

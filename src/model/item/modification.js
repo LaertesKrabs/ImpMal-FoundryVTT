@@ -9,7 +9,7 @@ export class ModificationModel extends PhysicalItemModel
     static defineSchema() 
     {
         let schema = super.defineSchema();
-        schema.type = new fields.StringField({initial: "weapon", choices : {weapon : "IMPMAL.Weapon", protection : "IMPMAL.Armour"}});
+        schema.type = new fields.StringField({initial: "weapon", choices : {weapon : "IMPMAL.Weapon", protection : "IMPMAL.Armour", augmetic: "IMPMAL.Augmetic"}});
         schema.category = new fields.StringField();
         schema.usedWith = new fields.StringField();
         schema.addedTraits = new fields.EmbeddedDataField(TraitListModel);
@@ -57,7 +57,7 @@ export class ModListModel extends ListModel
 
     prepareMods(document)
     {
-        this.documents = this.list.map(e => new ImpMalItem(e));
+        this.documents = this.list.map(e => new ImpMalItem(e, {parent: document?.actor}));
         for(let mod of this.list)
         {
             // Store mod effects in a object (with id as keys) so manual scripts can work

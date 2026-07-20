@@ -143,15 +143,20 @@ export class OpposedTestResult
         {
             this._tooltips.damage.additional = {label : "IMPMAL.Other", value : additional};
         }
+        let damage;
         switch(item.type)
         {
-        case "weapon" : 
-            return this._computeWeaponDamage(item, {attackerTest, defenderTest}) + (add || 0) + attackerTest.result.additionalDamage;
-        case "trait" : 
-            return this._computeTraitDamage(item, {attackerTest, defenderTest}) + (add || 0) + attackerTest.result.additionalDamage;
-        case "power" : 
-            return this._computePowerDamage(item, {attackerTest, defenderTest}) + (add || 0);
+            case "weapon" : 
+                damage = this._computeWeaponDamage(item, {attackerTest, defenderTest}) + (add || 0) + attackerTest.result.additionalDamage;
+            case "trait" : 
+                damage = this._computeTraitDamage(item, {attackerTest, defenderTest}) + (add || 0) + attackerTest.result.additionalDamage;
+            case "power" : 
+                damage = this._computePowerDamage(item, {attackerTest, defenderTest}) + (add || 0);
         }
+        let args = {damage, test: attackerTest, item, defenderTest, tooltips: this._tooltips}
+        attackerTest.actor.runScripts("computeDamageAttacker", args);
+        item.runScripts("computeDamageAttacker", args);
+        return args.damage;
     }
 
 

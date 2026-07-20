@@ -28,7 +28,7 @@ export class FactionModel extends DualItemModel
             influence : new fields.EmbeddedDataField(ItemInfluenceModel, {}, {name : "influence", parent : schema.character}),
             talents : new fields.EmbeddedDataField(ChoiceModel, {}, {name : "talents", parent : schema.character}),
             equipment : new fields.EmbeddedDataField(ChoiceModel, {}, {name : "equipment", parent : schema.character}),
-            solars : new fields.NumberField({initial: 0}),
+            solars : new fields.NumberField({initial: 0}, {name: "solars", parent: schema.character}),
             duty : new fields.EmbeddedDataField(DeferredReferenceListModel, {}, {name : "duty", parent : schema.character}),
         });
         return schema;
@@ -77,13 +77,22 @@ export class FactionModel extends DualItemModel
         }
         else 
         {
-
-            html = `
-            <section class="box-text dark">
+            if (config.noBox)
+            {
+                html = `
+                
+                <h3>@UUID[${this.parent.uuid}]{${config.label || this.parent.name}}</h3>
+                ${this.character.notes}`;
+            }
+            else 
+            {
+                html = `
+                <section class="box-text dark">
                 <p class="box-header">@UUID[${this.parent.uuid}]{${config.label || this.parent.name}}</p>
                 ${this.character.notes}
-            </section>
-            `;
+                </section>
+                `;
+            }
         }
 
         let div = document.createElement("div");

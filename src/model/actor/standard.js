@@ -226,6 +226,11 @@ export class StandardActorModel extends BaseActorModel
         this.warp.sustaining.relative = this.parent.items;
     }
 
+    findSpecialisation(skill, spec)
+    {
+        return this.parent.itemTypes.specialisation.find(i => i.name == spec && i.system.skill == skill);
+    }
+
     async useAction(action)
     {
         let actionData = game.impmal.config.actions[action];
@@ -272,8 +277,9 @@ export class StandardActorModel extends BaseActorModel
             locationKey  = this.combat.hitLocAt(location);
         }
         let locationData = this.combat.hitLocations[locationKey];
+        let penetrating = traits?.has("penetrating")?.value || 0;
 
-        let args = {actor : this.parent, value, ignoreAP, modifiers, locationData, opposed, traits, context};
+        let args = {actor : this.parent, value, ignoreAP, penetrating, modifiers, locationData, opposed, traits, context};
         await Promise.all(opposed?.attackerTest?.actor.runScripts("preApplyDamage", args) || []);
         await Promise.all(opposed?.attackerTest?.item?.runScripts?.("preApplyDamage", args) || []);
         await Promise.all(this.parent.runScripts("preTakeDamage", args)); 
@@ -302,11 +308,10 @@ export class StandardActorModel extends BaseActorModel
                 }
                 armourValue += armourRoll.total;
             }
-            let penetrating = traits?.has("penetrating");
             if (penetrating)
             {
-                armourValue = Math.max(0, armourValue - Number(penetrating.value || 0));
-                modifiers.push({value : penetrating.value, label : game.i18n.localize("IMPMAL.Penetrating"), applied : true});
+                armourValue = Math.max(0, armourValue - Number(penetrating || 0));
+                modifiers.push({value : penetrating, label : game.i18n.localize("IMPMAL.Penetrating"), applied : true});
             }
             modifiers.push({value : -armourValue, label : game.i18n.localize("IMPMAL.Protection"), armour : true});
             if (traits?.has("ineffective"))

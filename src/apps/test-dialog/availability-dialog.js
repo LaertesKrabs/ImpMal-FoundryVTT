@@ -38,6 +38,11 @@ export class AvailabilityDialog extends TestDialog
         return true;
     }
 
+    get item()
+    {
+        return this.data.item;
+    }
+
     static PARTS = {
         fields : {
             template : "systems/impmal/templates/apps/test-dialog/test-dialog.hbs",
@@ -75,7 +80,7 @@ export class AvailabilityDialog extends TestDialog
         dialogData.data.targets = [];
         // TODO find a way to avoid duplicating this code from the parent class
         dialogData.data.title = (context.title || game.i18n.localize("IMPMAL.Availability")) + (context.appendTitle || "");
-        dialogData.data.scripts = [];
+        dialogData.data.scripts = dialogData.data.scripts.filter(s => s.options.hideScript.includes("args.availability"));
         dialogData.data.item = item;
         dialogData.fields.cost = item.system.cost;
         dialogData.fields.world = world;
