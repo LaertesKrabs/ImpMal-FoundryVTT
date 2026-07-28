@@ -64,7 +64,10 @@ export class TalentModel extends StandardItemModel
     async _onCreate(data, options, user) 
     {
         await super._onCreate(data, options, user);
-        this.handleEffectSelection();
+        if (game.user.id == user)
+        {
+            this.handleEffectSelection();
+        }
     }
 
     computeDerived()

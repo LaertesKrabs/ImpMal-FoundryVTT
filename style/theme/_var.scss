@@ -497,6 +497,9 @@ body.impmal-scan {
       font-size: var(--font-size-18);
       font-weight: bold;
       color: white;
+      td {
+        color: white;
+      }
     }
 
     tbody {
@@ -538,9 +541,21 @@ body.impmal-scan {
 @mixin box-text() { 
   section.box-text {
     outline: 3px solid var(--impmal-grey);
-    border: 20px solid transparent;
-    border-image: url(./assets/ui/box-corners.webp);
-    border-image-slice: 10% 10%;
+    
+    &:not(.no-corners)
+    {
+      border: 20px solid transparent;
+      border-image: url(./assets/ui/box-corners.webp);
+      border-image-slice: 363 390 445 400;
+      border-image-width: 40px;
+
+    }
+
+    &.no-corners {
+      padding: 20px;
+    }
+
+
     color: white;
     background: url(./assets/ui/box-background.webp) repeat;
     margin: 10px;
@@ -581,9 +596,29 @@ body.impmal-scan {
       background: url(./assets/ui/box-background-light.webp) repeat;
       background-size: contain;
       padding: 5px;
-      border: 20px solid transparent;
-      border-image: url(./assets/ui/box-corners-light.webp);
-      border-image-slice: 10% 10%;
+      box-shadow: 0px 0px 10px  black;
+
+      &:not(.no-corners)
+      {
+        border: 20px solid transparent;
+        border-image: url(./assets/ui/box-corners-light.webp);
+        border-image-slice: 372 427 427 445;
+        border-image-width: 40px;
+        border-image-outset: 3px;
+      }
+
+      &.servo-border {
+        border-image: url(./assets/ui/box-border-servo.webp);
+        border-image-width: 60px;
+        border-image-slice:   110 88 100 84;
+        margin: 20px;
+        border-image-outset: 15px 24px;
+      }
+
+      &.no-corners {
+        padding: 20px;
+      }
+  
 
       &.blue {
         border-image: none;
@@ -593,14 +628,21 @@ body.impmal-scan {
         color: var(--impmal-lightblue)
       }
 
+      &.grid-alt,
       &.grid {
         background: url(./assets/ui/grid-bg.webp) repeat;
+        background-size: contain;
         .box-header,
         h1,h2,h3,h4,h5 {
           color: black;
           font-weight: normal;
           text-align: center;
         }
+      }
+
+      &.grid-alt {
+        background: url(./assets/ui/grid-bg-alt.webp) repeat;
+        background-size: contain;
       }
 
       .box-header {
@@ -756,7 +798,8 @@ body.impmal-scan {
   h6 {
     margin: 0 0 0.5rem;
     font-family: "Novarese";
-    font-size: var(--font-size-18);
+    font-size: var(--font-size-16);
+    color: rgb(52, 150, 151);
   }
 
   .blue {
@@ -770,14 +813,21 @@ body.impmal-scan {
 
 
   section.hook {
-    background-clip: padding-box;
-    padding: 10px;
-    border-top: 20px solid transparent;
-    border-image: url(./assets/ui/hook-top.webp);
-    border-image-slice: 100 0% 0% 0%;
+    // padding: 10px;
+    // border-top: 20px solid transparent;
+    // border-image: url(./assets/ui/hook-top.webp);
+    // border-image-slice: 133 0% 0% 0%;
+    // filter: drop-shadow(5px 5px 8px black);
+    // margin: 10px;
+    // background: url(./assets/ui/hook-bg.webp);
+
+    border-image-source: url(./assets/ui/hook-bg-test.webp);
+    border-image-slice: 55 115 159 115 fill;
+    border-image-width: 20px 40px 20px 40px;
+    padding: 1.5rem 2rem;
     filter: drop-shadow(5px 5px 8px black);
-    margin: 10px;
-    background: url(./assets/ui/hook-bg.webp);
+    margin-bottom: 1rem;
+    
 
     .hook-title {
       font-weight: bold;
@@ -785,6 +835,8 @@ body.impmal-scan {
       text-align: center;
       font-family: "Novarese";
       font-size: var(--font-size-24);
+      color: black;
+
     }
 
   }

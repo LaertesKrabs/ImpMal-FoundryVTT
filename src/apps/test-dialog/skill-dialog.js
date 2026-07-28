@@ -6,6 +6,11 @@ export class SkillTestDialog extends CharacteristicTestDialog
 
     get skillItem() 
     {
+        return this.specialisation;
+    }
+
+    get specialisation() 
+    {
         return this.actor.items.get(this.data.skillItemId);
     }
 

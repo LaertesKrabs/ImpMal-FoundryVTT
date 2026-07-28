@@ -123,7 +123,10 @@ export class BaseActorModel extends BaseWarhammerActorModel
             {
                 image = actor.prototypeToken.texture.src;
             }
-            html += `<div class="journal-image centered" ><img src="${image}" width="200" height="200"></div>`
+            if (!config.noImage)
+            {
+                html += `<div class="journal-image centered" ><img src="${image}" width="200" height="200"></div>`
+            }
             html += `<p style="text-align:center">@UUID[${actor.uuid}]{${config.label || actor.name}}</p>`
             if (config.description == "bottom")
             {

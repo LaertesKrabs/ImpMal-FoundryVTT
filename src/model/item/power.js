@@ -22,6 +22,11 @@ export class PowerModel extends StandardItemModel
         schema.xpOverride = new fields.NumberField({initial : null, nullable : true});
         return schema;
     }
+    
+    get test() 
+    {
+        return this.opposed;
+    }
 
     getSkill(actor)
     {

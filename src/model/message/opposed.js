@@ -142,7 +142,7 @@ export class OpposedTestMessageModel extends WarhammerMessageModel
             this.renderContent({"system.applied" : data})
             if (data.woundsGained > 0 && attackerTest.damageEffects.length)
             {
-                this.target.actor.applyEffect({effectUuids : attackerTest.damageEffects.map(i => i.uuid), messageId : this.attackerMessageId});
+                this.target.actor.applyEffect({effects : attackerTest.damageEffects, messageId : this.attackerMessageId});
             }
         })
     }

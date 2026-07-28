@@ -148,10 +148,13 @@ export class OpposedTestResult
         {
             case "weapon" : 
                 damage = this._computeWeaponDamage(item, {attackerTest, defenderTest}) + (add || 0) + attackerTest.result.additionalDamage;
+                break;
             case "trait" : 
                 damage = this._computeTraitDamage(item, {attackerTest, defenderTest}) + (add || 0) + attackerTest.result.additionalDamage;
+                break;
             case "power" : 
                 damage = this._computePowerDamage(item, {attackerTest, defenderTest}) + (add || 0);
+                break;
         }
         let args = {damage, test: attackerTest, item, defenderTest, tooltips: this._tooltips}
         attackerTest.actor.runScripts("computeDamageAttacker", args);

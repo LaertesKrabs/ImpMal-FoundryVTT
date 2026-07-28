@@ -52,6 +52,12 @@ export class WeaponModel extends EquippableItemModel
     async _onUpdate(data, options, user)
     {
         await super._onUpdate(data, options, user);
+
+        if (game.user.id != user)
+        {
+            return;
+        }
+
         let updateData = {}
         // If ammo changed, also update current mag value
         // Can't be in _preUpdate because need to check ammo quantity, ammo.document would not ready 
@@ -167,7 +173,7 @@ export class WeaponModel extends EquippableItemModel
         }
         if (this.category == "launcher")
         {
-            return items.filter(i => i.type == "weapon" && i.system.spec == "ordnance" && i.system.category == "grenadesExplosives");
+            return items.filter(i => i.type == "weapon" && ["ordnance", "thrown"].includes(i.system.spec) && i.system.category == "grenadesExplosives");
         }
         else 
         {
