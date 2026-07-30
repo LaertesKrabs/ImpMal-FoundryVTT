@@ -1,1 +1,1 @@
-args.fields.characteristic = "int"
+args.fields.characteristic == "int"
