@@ -1,0 +1,1 @@
+args.combat.speed.land.value = "fast";

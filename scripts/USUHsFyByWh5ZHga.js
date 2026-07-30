@@ -1,0 +1,1 @@
+return ["Sight", "Surroundings"].includes(args.skillItem?.name);

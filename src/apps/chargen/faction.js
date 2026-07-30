@@ -195,7 +195,7 @@ export class FactionStage extends ChargenStage {
         {
             let roll = await table.roll();
             let factionName = roll?.results[0]?.text;
-            let factionId = this.factionItemMap[factionName];
+            let factionId = this.factionItemMap[factionName] || roll?.results[0]?.documentUuid;
             let faction = await game.impmal.utility.findId(factionId);
             this.setFaction(faction);
             if (this.context.faction)

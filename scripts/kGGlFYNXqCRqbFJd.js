@@ -1,0 +1,1 @@
+return (args.skillItem?.name != "Leadership" && args.data.skill != "discipline")

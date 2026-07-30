@@ -1,0 +1,1 @@
+return ["Smell", "Tracking"].includes(args.specialisation?.name);

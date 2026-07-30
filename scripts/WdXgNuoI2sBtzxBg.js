@@ -1,0 +1,1 @@
+return !["overwatch", "aim"].includes(args.actor.system.combat.action);

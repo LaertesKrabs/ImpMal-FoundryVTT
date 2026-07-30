@@ -1,0 +1,1 @@
+this.actor.applyDamage(8, {message: true})

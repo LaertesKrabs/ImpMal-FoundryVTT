@@ -14,6 +14,11 @@ export class OriginModel extends StandardItemModel
             base : new fields.StringField(),
             choices : new fields.ArrayField(new fields.StringField())
         });
+        schema.skills = ListModel.createListModel(new fields.SchemaField({
+            group: new fields.StringField(),
+            skill: new fields.StringField(),
+            spec: new fields.StringField()
+        }))
         return schema;
     }
 

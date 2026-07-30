@@ -1,0 +1,1 @@
+this.effect.updateSource({duration : {value: Math.max(1, this.effect.sourceTest.result.SL), units: "turns"}});

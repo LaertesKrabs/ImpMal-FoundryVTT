@@ -19,6 +19,7 @@ export class FactionModel extends DualItemModel
         foundry.utils.mergeObject(schema.character.fields, {
             characteristics : new fields.SchemaField({
                 base : new fields.StringField(),
+                value: new fields.NumberField({initial: 5}),
                 choices : new fields.ArrayField(new fields.StringField())
             }, {}, {name : "characteristics", parent : schema.character}),
             advances : new fields.SchemaField({

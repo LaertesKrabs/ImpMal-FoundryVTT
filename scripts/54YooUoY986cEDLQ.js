@@ -1,0 +1,1 @@
+return !args.availability || args.item.system.spec != "ordnance";

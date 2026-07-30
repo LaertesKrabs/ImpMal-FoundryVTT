@@ -1947,7 +1947,8 @@ const IMPMAL = {
         "impmal-starter-set" : "Starter Set",
         "impmal-inquisition" : "Inquisition Guide",
         "impmal-requisition" : "Requisition Guide",
-        "impmal-voll" : "Voll Adventures"
+        "impmal-voll" : "Voll Adventures",
+        "impmal-mechanicus" : "Adeptus Mechanicus Guide"
      },
 
      bugReporterConfig : {

@@ -199,7 +199,7 @@ export default class CharGenIM extends FormApplication {
 
     if (faction)
     {
-      characteristics[faction.system.character.characteristics.base].starting += 5;
+      characteristics[faction.system.character.characteristics.base].starting += faction.system.character.characteristics.value;
       characteristics[this.data.choices.faction].starting += 5;
     }
 

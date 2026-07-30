@@ -3,6 +3,31 @@ import { CorruptionMessageModel } from "../model/message/corruption";
 export default class ImpMalUtility
 {
 
+    static async promptSkillSpecialisations(skill, dialogConfig={})
+    {
+        let specialisations = await warhammer.utility.findAllItems("specialisation", "", true, ["system.skill"])
+
+        specialisations = specialisations.filter(i => i.system.skill == skill);
+        let choice = [];
+        if (specialisations.length)
+        {
+            choice = await ItemDialog.create(specialisations, dialogConfig.number || 1, {text : dialogConfig.text || "Choose Specialisation", title: dialogConfig.title || `${game.impmal.config.skills[skill]} Specialisations`});
+        }
+        // if (choice.length == 0)
+        // {
+        //     choice = [{custom: true, name: await ValueDialog.create({text: "Enter Specialisation", title: game.impmal.config.skills[skill]})}];
+        // }
+        return choice;
+
+    }
+
+    static async findSpecialisation(skill, name)
+    {
+        let specialisations = await warhammer.utility.findAllItems("specialisation", "", true, ["system.skill"])
+
+        return specialisations.find(i => i.system.skill == skill && i.name.toLowerCase() == name.toLowerCase());
+    }
+
     static _keepID(id, document) 
     {
         try 
