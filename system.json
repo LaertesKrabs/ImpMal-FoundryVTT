@@ -44,8 +44,8 @@
       "type": "module",
       "reason" : "Foundational code all Warhammer systems are built upon.",
       "compatibility": {
-        "minimum" : "3.3.1",
-        "verified": "3.3.1"
+        "minimum" : "3.3.3",
+        "verified": "3.3.3"
       }
     }]
   },
