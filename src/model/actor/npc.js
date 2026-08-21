@@ -50,6 +50,12 @@ export class NPCModel extends StandardActorModel
     {
         try 
         {
+
+            
+            const createWeaponHTML = (weapon) => {
+                return `<p>@UUID[${weapon.uuid}]{${weapon.name}}: ${game.i18n.localize({"melee" : "IMPMAL.Melee", "ranged" : "IMPMAL.Ranged"}[weapon.system.attackType])} (${weapon.system.specialisation}), ${weapon.system.damage.base} Damage, ${game.impmal.config.ranges[weapon.system.range]} Range. <em>${weapon.system.traits.displayString}</em>`
+            }
+
             let data = super.embedData(options);
 
             let armour = this.combat.armour.value;
@@ -77,7 +83,9 @@ export class NPCModel extends StandardActorModel
                 }
             }
 
-            let possessions = this.parent.items.filter(i => i.system.isPhysical);
+            let possessions = this.parent.items.filter(i => i.system.isPhysical && i.type != "weapon");
+
+            let attacks = this.parent.items.filter(i => i.type == "weapon").map(createWeaponHTML);
 
             let traits = this.parent.itemTypes.trait.filter(i => i.system.notes.player).map(i => {
                 return i.system.notes.player.replace("<p>", `<p><strong>${i.name}</strong>: `)
@@ -86,6 +94,7 @@ export class NPCModel extends StandardActorModel
 
             return foundry.utils.mergeObject(data, {
                 armour, 
+                attacks,
                 skills: skills.join(", "), 
                 traits : traits.join(""),
                 possessions: possessions.map(i => `@UUID[${i.uuid}]`).join(", ")

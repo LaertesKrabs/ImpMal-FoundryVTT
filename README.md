@@ -27,6 +27,8 @@ See **Environment Setup** for instructions on how to build the project for devel
 
 - [Warhammer 40,000: Imperium Maledictum - Voll Adventures](https://foundryvtt.com/packages/impmal-voll)
 
+- [Warhammer 40,000: Imperium Maledictum - Adeptus Mechanicus Guide](https://foundryvtt.com/packages/impmal-mechanicus)
+
 ## Special Thanks
 - Cubicle 7
 - Games Workshop

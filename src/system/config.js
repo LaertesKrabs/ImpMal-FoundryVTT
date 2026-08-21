@@ -236,6 +236,7 @@ const IMPMAL = {
         wheeled : "IMPMAL.Wheeled",
         tracked : "IMPMAL.Tracked",
         flyer : "IMPMAL.Flyer",
+        hovercraft : "IMPMAL.FlyerHovercraft",
         walker : "IMPMAL.Walker"
     },
 
@@ -391,6 +392,57 @@ const IMPMAL = {
         major : "IMPMAL.Major"
     },
 
+    instinctTypes:  {
+        combat : "IMPMAL.CombatInstinct",
+        preservation: "IMPMAL.PreservationInstinct",
+    },
+
+    combatInstincts:  {
+        "melee" : {
+            name : "IMPMAL.Instinct.Name.melee",
+            description : "IMPMAL.Instinct.Description.melee",
+            key : "melee"
+        },
+        "ranged" : {
+            name : "IMPMAL.Instinct.Name.ranged",
+            description : "IMPMAL.Instinct.Description.ranged",
+            key : "ranged"
+        },
+        "stalker" : {
+            name : "IMPMAL.Instinct.Name.stalker",
+            description : "IMPMAL.Instinct.Description.stalker",
+            key : "stalker"
+        },
+        "support" : {
+            name : "IMPMAL.Instinct.Name.support",
+            description : "IMPMAL.Instinct.Description.support",
+            key : "support"
+        }
+    },
+
+    preservationInstincts:  {
+        "fearless" : {
+            name : "IMPMAL.Instinct.Name.fearless",
+            description : "IMPMAL.Instinct.Description.fearless",
+            key : "fearless"
+        },
+        "brave" : {
+            name : "IMPMAL.Instinct.Name.brave",
+            description : "IMPMAL.Instinct.Description.brave",
+            key : "brave"
+        },
+        "wary" : {
+            name : "IMPMAL.Instinct.Name.wary",
+            description : "IMPMAL.Instinct.Description.wary",
+            key : "wary"
+        },
+        "coward" : {
+            name : "IMPMAL.Instinct.Name.coward",
+            description : "IMPMAL.Instinct.Description.coward",
+            key : "coward"
+        }
+    },
+
     coverTypes : {
         "" : "",
         lightCover : "IMPMAL.LightCover",
@@ -525,6 +577,8 @@ const IMPMAL = {
         // preDefenderComputeOpposedDamage : "IMPMAL.TriggerPreDefenderComputeOpposedDamage",
         // postDefenderEvaluateOpposed : "IMPMAL.TriggerDefenderEvaluateOpposed",
 
+        computeDamageAttacker : "IMPMAL.TriggerComputeDamage",
+
         preApplyDamage : "IMPMAL.TriggerPreApplyDamage",
         applyDamage : "IMPMAL.TriggerApplyDamage",
         preTakeDamage : "IMPMAL.TriggerPreTakeDamage",
@@ -540,6 +594,8 @@ const IMPMAL = {
 
         rollTable : "IMPMAL.TriggerRollTable",
         equipToggle : "IMPMAL.TriggerEquipToggle",
+
+        targeted : "IMPMAL.TriggerTargeted",
 
         startRound : "IMPMAL.TriggerStartRound",
         endRound : "IMPMAL.TriggerEndRound",
@@ -608,7 +664,7 @@ const IMPMAL = {
         },
         emergencyLanding : {
             name : "IMPMAL.EmergencyLanding",
-            restriction : function(actor) { return ["flyer"].includes(actor.system.category) }
+            restriction : function(actor) { return ["flyer", "hovercraft"].includes(actor.system.category) }
         },
         evasiveManeuvers : {
             name : "IMPMAL.EvasiveManeuvers",
@@ -883,6 +939,11 @@ const IMPMAL = {
                 }
             }
         },
+        overwatch : {
+            label : "IMPMAL.Overwatch",
+            test : {},
+            execute : ``
+        },
         run : {
             label : "IMPMAL.Run"
         },
@@ -985,6 +1046,19 @@ const IMPMAL = {
                     options : {
                         activateScript : "return true;"
                     }
+                }]
+            }
+        },
+        unstable : {
+            name : "IMPMAL.Unstable",
+            system : {
+                transferData : {
+                    documentType: "Item"
+                },
+                scriptData : [{
+                    label : "Self Destruct",
+                    trigger : "rollWeaponTest",
+                    script : "if (args.result.fumble) { args.result.text.unstable = '<strong>Unstable</strong>: 5+ on the Fumble Table results in Self Destruction';}",
                 }]
             }
         }
@@ -1873,7 +1947,8 @@ const IMPMAL = {
         "impmal-starter-set" : "Starter Set",
         "impmal-inquisition" : "Inquisition Guide",
         "impmal-requisition" : "Requisition Guide",
-        "impmal-voll" : "Voll Adventures"
+        "impmal-voll" : "Voll Adventures",
+        "impmal-mechanicus" : "Adeptus Mechanicus Guide"
      },
 
      bugReporterConfig : {

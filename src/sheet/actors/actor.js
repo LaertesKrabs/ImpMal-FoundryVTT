@@ -402,30 +402,22 @@ export default class IMActorSheet extends IMSheetMixin(WarhammerActorSheetV2)
     static async _onCreateSpecialisation(ev)
     {
         let skill = this._getKey(ev);
+
+        let choice = await game.impmal.utility.promptSkillSpecialisations(skill, {text: game.i18n.localize("IMPMAL.ChooseSpecialisation"), number: 1});
         
-        let specialisations = await warhammer.utility.findAllItems("specialisation", "", true, ["system.skill"])
-
-        specialisations = specialisations.filter(i => i.system.skill == skill);
-        let choice = [];
-        if (specialisations.length)
-        {
-            choice = await ItemDialog.create(specialisations, 1, {text : game.i18n.localize("IMPMAL.ChooseSpecialisation")});
-        }
-
-        if (choice[0])
+        if (choice[0] && !choice[0].custom)
         {
             Item.implementation.create((await fromUuid(choice[0].uuid)).toObject(), {parent: this.actor});
         }
-
         else 
         {
             Item.implementation.create({
                 type : "specialisation",
-                name : game.i18n.format("IMPMAL.SkillSpecialisation", {skill : game.impmal.config.skills[skill]}), 
+                name : choice[0]?.name ?? game.i18n.format("IMPMAL.SkillSpecialisation", {skill : game.impmal.config.skills[skill]}), 
                 system : {skill}, 
             }, {renderSheet:true, parent: this.actor});
         }
-            
+
     }
 
     static _onExpandRow(ev, target) 

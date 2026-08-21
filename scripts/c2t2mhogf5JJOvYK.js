@@ -1,0 +1,1 @@
+return ["awareness", "discipline", "melee", "navigation", "piloting", "ranged", "stealth"].includes(args.skill)

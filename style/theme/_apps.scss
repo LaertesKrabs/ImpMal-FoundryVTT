@@ -226,6 +226,7 @@ body.impmal-theme .application:not(.journal-sheet) {
     .form-group select,
     .form-group input:not([type="checkbox"], [type="range"], [type="radio"]),
     select,
+    .like-input,
     input:not([type="checkbox"], [type="range"], [type="radio"]) {
         background: none;
         outline: none;
@@ -245,6 +246,10 @@ body.impmal-theme .application:not(.journal-sheet) {
             color: var(--impmal-grey2);
             background: var(--impmal-darkblue);
         }
+    }
+
+    .like-input {
+        border: none;
     }
 
     input[type="radio"],

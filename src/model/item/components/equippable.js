@@ -143,8 +143,8 @@ export class EquippableItemModel extends PhysicalItemModel {
                 this.traits.combine(ammo.system.traits);
             }
             else if (ammo.type == "ammo") {
-                this.traits.combine(ammo.system.addedTraits);
                 this.traits.remove(ammo.system.removedTraits);
+                this.traits.combine(ammo.system.addedTraits);
             }
 
             this._applyEffects(ammo.effects.filter(e => e.system.transferData.type == "document" && e.system.transferData.documentType == "Item" && !e.disabled));

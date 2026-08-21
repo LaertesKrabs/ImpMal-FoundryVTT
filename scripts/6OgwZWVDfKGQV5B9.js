@@ -1,0 +1,1 @@
+this.actor.applyDamage(this.effect.getFlag("impmal", "wounds"), {ignoreAP : true}).then(data => this.script.scriptMessage("Took " + data.woundsGained + " Damage"));

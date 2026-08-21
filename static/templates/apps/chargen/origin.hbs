@@ -42,6 +42,14 @@
         </div>
         {{/if}}
       </div>
+
+        {{#if skillChoice}}
+        <p class="centered">{{localize "IMPMAL.Skills"}}<a class="skill-reset"><i class="fas fa-rotate-left"></i></a></p>
+          <a class="skill-choice"></i>+1 {{skillChoice.name}}</a>
+        {{else if showSkillChoice}}
+        <p class="centered">{{localize "IMPMAL.Skills"}}</p>
+          <a class="skill-choice content-link"></i> Choose Skill(s)</a>
+        {{/if}}
     {{/if}}
 
 

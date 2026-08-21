@@ -131,7 +131,7 @@ export default class CharGenIM extends FormApplication {
       }
     }
 
-    this.actor = {type: "character", system: foundry.utils.deepClone(game.model.Actor.character), items: [] }
+    this.actor = {type: "character", system: new Actor({type: "character", name : "New Character"}).toObject().system, items: [] }
 
     if (!game.user.isGM)
     {
@@ -199,7 +199,7 @@ export default class CharGenIM extends FormApplication {
 
     if (faction)
     {
-      characteristics[faction.system.character.characteristics.base].starting += 5;
+      characteristics[faction.system.character.characteristics.base].starting += faction.system.character.characteristics.value;
       characteristics[this.data.choices.faction].starting += 5;
     }
 

@@ -1,0 +1,1 @@
+return !["discipline", "navigation"].includes(args.skill) || !["Psychic", "Fear", "Tracking"].includes(args.specialisation?.name);

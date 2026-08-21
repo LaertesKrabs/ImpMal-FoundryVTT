@@ -1,0 +1,1 @@
+return args.specialisation?.name == "Running";

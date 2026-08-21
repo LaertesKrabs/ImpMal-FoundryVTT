@@ -1,0 +1,1 @@
+return (args.skillItem && args.skillItem.name != "Might") || args.skill != "athletics";

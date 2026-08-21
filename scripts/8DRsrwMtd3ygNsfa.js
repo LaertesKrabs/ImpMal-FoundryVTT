@@ -1,0 +1,1 @@
+this.actor.applyDamage(5, {context : {hazard : "minor"}}).then(data => ui.notifications.notify("Took " + data.woundsGained + " Damage from Hazard"));

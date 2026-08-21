@@ -9,7 +9,7 @@ export class ModificationModel extends PhysicalItemModel
     static defineSchema() 
     {
         let schema = super.defineSchema();
-        schema.type = new fields.StringField({initial: "weapon", choices : {weapon : "IMPMAL.Weapon", protection : "IMPMAL.Armour"}});
+        schema.type = new fields.StringField({initial: "weapon", choices : {weapon : "IMPMAL.Weapon", protection : "IMPMAL.Armour", augmetic: "IMPMAL.Augmetic"}});
         schema.category = new fields.StringField();
         schema.usedWith = new fields.StringField();
         schema.addedTraits = new fields.EmbeddedDataField(TraitListModel);
@@ -38,6 +38,22 @@ export class ModificationModel extends PhysicalItemModel
         return data;
     }
 
+    async toEmbed(config, options)
+    {
+
+        let html = `
+            <h4>@UUID[${this.parent.uuid}]{${config.label || this.parent.name}}</h4>
+            ${this.notes.player}
+            ${game.user.isGM ? this.notes.gm : ""}
+        `;
+
+
+        let div = document.createElement("div");
+        div.style = config.style;
+        div.innerHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(html, {relativeTo : this.parent, async: true, secrets : options.secrets});
+        return div;
+    }
+
     shouldTransferEffect(effect)
     {
         return super.shouldTransferEffect(effect);// && this.onDocument?.system?.shouldTransferEffect(effect);
@@ -57,7 +73,7 @@ export class ModListModel extends ListModel
 
     prepareMods(document)
     {
-        this.documents = this.list.map(e => new ImpMalItem(e));
+        this.documents = this.list.map(e => new ImpMalItem(e, {parent: document?.actor}));
         for(let mod of this.list)
         {
             // Store mod effects in a object (with id as keys) so manual scripts can work

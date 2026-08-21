@@ -23,14 +23,25 @@ export class RoleModel extends StandardItemModel
 
     async toEmbed(config, options)
     {
-        let html = `
-        <section class="box-text dark">
-            <p class="box-header">@UUID[${this.parent.uuid}]{${config.label || this.parent.name}}</p>
+        let html;
+        if (config.noBox)
+        {
+            html = `
+            ${config.noLink ? "" : `<h3>@UUID[${this.parent.uuid}]{${config.label || this.parent.name}}</h3>`}
+            ${this.notes.player}`;
+        }
+        else 
+        {
+            
+            html = `
+            <section class="box-text dark">
+            ${config.noLink ? "" : `<p class="box-header">@UUID[${this.parent.uuid}]{${config.label || this.parent.name}}</p>`}
             ${this.notes.player}
-        </section>
-        `;
-        
-
+            </section>
+            `;
+        }
+            
+            
         let div = document.createElement("div");
         div.style = config.style;
         div.innerHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(warhammer.utility.removeSelfUUID(html, options.relativeTo), {relativeTo : this.parent, async: true, secrets : options.secrets});
@@ -57,7 +68,7 @@ class RoleSpecialisationsModel extends DocumentReferenceListModel
     {
         let fields = foundry.data.fields;
         let schema = super.defineSchema();
-        schema.value = new fields.NumberField();
+        schema.value = new fields.NumberField({initial: 0});
         schema.keys = new fields.ArrayField(new fields.StringField());
         return schema;
     }

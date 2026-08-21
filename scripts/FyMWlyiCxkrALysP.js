@@ -1,0 +1,1 @@
+return (args.data.skill != "awareness" && args.skillItem?.name != "Surroundings" && args.skillItem?.name != "Investigation" && args.skillItem?.name != "Surface" && args.skillItem?.name != "Tracking" && args.skillItem?.name != "Void")

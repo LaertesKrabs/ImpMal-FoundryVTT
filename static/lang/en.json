@@ -5,6 +5,7 @@
     "TYPES.Actor.npc" : "Non-Player Character",
     "TYPES.Actor.patron" : "Patron",
     "TYPES.Actor.vehicle" : "Vehicle",
+    "TYPES.Actor.familiar" : "Familiar",
 
     "TYPES.Item.boonLiability" : "Boon / Liability",
     "TYPES.Item.origin" : "Origin",
@@ -114,6 +115,7 @@
     "IMPMAL.Characteristic" : "Characteristic",
     "IMPMAL.CharacteristicTest" : "{characteristic} Test",
     "IMPMAL.Characteristics" : "Characteristics",
+    "IMPMAL.CharacteristicChoices" : "Characteristic Choices",
     "IMPMAL.Charge" : "Charge",
     "IMPMAL.ChoiceAND" : "AND",
     "IMPMAL.ChoiceOR" : "OR",
@@ -228,6 +230,32 @@
         "ShowPassengers" : "Show Passenger Tokens"
     },
 
+    "IMPMAL.CombatInstinct" : "Combat Instinct",
+    "IMPMAL.PreservationInstinct" : "Preservation Instinct",
+
+    "IMPMAL.Instincts" : "Instincts",
+    "IMPMAL.Instinct" : {
+        "Name" : {
+            "melee" : "Melee",
+            "ranged" : "Ranged",
+            "stalker" : "Stalker",
+            "fearless" : "Fearless",
+            "support" : "Support",
+            "brave" : "Brave",
+            "wary" : "Wary",
+            "coward" : "Coward"
+        },
+        "Description" : {
+            "melee" : "Will Charge the nearest enemy or Defend their Master.",
+            "ranged" : "Shoots nearest enemy, will manoeuvre to maintain optimal distance.",
+            "stalker" : "Takes Actions to Hide, Attacks from Stealth, Disengages to repeat.",
+            "fearless" : "Fights to the death unless ordered to withdraw.",
+            "brave" : "Attempts to withdraw once it loses half its Wounds.",
+            "wary" : "Attempts to withdraw after losing a quarter of its Wounds.",
+            "support" : "Avoids Combat, focuses on Helping Characters (Such as Healing or Repairing)",
+            "coward" : "Attempts to withdraw if threatened or loses any of its Wounds."
+        }
+    },    
     "IMPMAL.CountEveryBullet" : "Count Every Bullet",
     "IMPMAL.CountEveryBulletHint" : "Use 'Counting Every Bullet' optional rule defined on page 314.",
     "IMPMAL.Corruption" : "Corruption",
@@ -372,6 +400,7 @@
     "IMPMAL.Flee" : "Flee",
     "IMPMAL.Fly" : "Fly",
     "IMPMAL.Flyer" : "Flyer",
+    "IMPMAL.FlyerHovercraft" : "Flyer (Hovercraft)",
     "IMPMAL.Force" : "Force",
     "IMPMAL.Forcefield" : "Force Field",
     "IMPMAL.ForceFieldProtection" : "Force Field Protection",
@@ -389,6 +418,8 @@
     "IMPMAL.Good" : "Good",
     "IMPMAL.Grapple" : "Grapple",
     "IMPMAL.GrenadesExplosives" : "Grenades & Explosives",
+    "IMPMAL.Group" : "Group",
+    "IMPMAL.GroupSelectionTooltip" : "Grouping: Each row represents a different choice. To group choices together, give them the same group value.",
     "IMPMAL.Hair" : "Hair",
     "IMPMAL.HairColour" : "Hair Colour",
     "IMPMAL.HairStyle" : "Hair Style",
@@ -538,6 +569,7 @@
     "IMPMAL.OverburdenedThreshold" : "Overburdened Threshold",
     "IMPMAL.Overload" : "Overload",
     "IMPMAL.Overt" : "Overt",
+    "IMPMAL.Overwatch" : "Overwatch",
     "IMPMAL.PassiveEffects" : "Passive Effects",
     "IMPMAL.Passengers" : "Passengers",
     "IMPMAL.Patron" : "Patron",
@@ -667,6 +699,7 @@
     "IMPMAL.Source" : "Source",
     "IMPMAL.Special" : "Special",
     "IMPMAL.Specialisation" : "Specialisation",
+    "IMPMAL.Spec" : "Spec.",
     "IMPMAL.Specialisations" : "Specialisations",
     "IMPMAL.SpecialisationAdvances" : "Specialisation Advances",
     "IMPMAL.Specialised" : "Specialised",
@@ -762,6 +795,7 @@
     "IMPMAL.TriggerComputeWarpState" : "Compute WarpState",
     "IMPMAL.TriggerPrepareOwnedItems" : "Prepare Owned Items",
     "IMPMAL.TriggerPrepareOwnedData" : "Prepare Owned Data",
+    "IMPMAL.TriggerComputeDamage" : "Compute Damage",
     "IMPMAL.TriggerPreApplyDamage" : "Pre-Apply Damage",
     "IMPMAL.TriggerPreTakeDamage" : "Pre-Take Damage",
     "IMPMAL.TriggerPreItemDamaged" : "Pre-Item Damaged",
@@ -787,6 +821,7 @@
     "IMPMAL.TriggerEndTurn" : "End Turn",
     "IMPMAL.TriggerRollTable" : "Roll Table",
     "IMPMAL.TriggerEquipToggle" : "Equip Toggle",
+    "IMPMAL.TriggerTargeted" : "Targeted",
     "IMPMAL.Troop" : "Troop",
     "IMPMAL.Trusted" : "Trusted",
     "IMPMAL.TwoHanded" : "Two Handed",
@@ -1037,6 +1072,9 @@
                         "characterisics" : {
                             "base" : {
                                 "label" : "Characteristic"
+                            },
+                            "value" : {
+                                "label" : "Value"
                             }
                         }
                     }

@@ -226,6 +226,11 @@ export class StandardActorModel extends BaseActorModel
         this.warp.sustaining.relative = this.parent.items;
     }
 
+    findSpecialisation(skill, spec)
+    {
+        return this.parent.itemTypes.specialisation.find(i => i.name == spec && i.system.skill == skill);
+    }
+
     async useAction(action)
     {
         let actionData = game.impmal.config.actions[action];
@@ -251,10 +256,10 @@ export class StandardActorModel extends BaseActorModel
         this.parent.update({"system.combat.action" : action}, {showActionText : !effectAdded});
     }
 
-    async applyDamage(value, {ignoreAP=false, location="roll", message=false, opposed, update=true, context={}}={})
+    async applyDamage(value, {ignoreAP=false, location="roll", message=false, opposed, update=true, context={}, traits=null}={})
     {   
         let modifiers = [];
-        let traits = opposed?.attackerTest?.itemTraits;
+        traits = traits ?? opposed?.attackerTest?.itemTraits;
         let locationKey;
         if (typeof location == "string")
         {
@@ -272,14 +277,16 @@ export class StandardActorModel extends BaseActorModel
             locationKey  = this.combat.hitLocAt(location);
         }
         let locationData = this.combat.hitLocations[locationKey];
+        let penetrating = traits?.has("penetrating")?.value || 0;
 
-        let args = {actor : this.parent, value, ignoreAP, modifiers, locationData, opposed, traits, context};
+        let args = {actor : this.parent, value, ignoreAP, penetrating, modifiers, locationData, opposed, traits, context};
         await Promise.all(opposed?.attackerTest?.actor.runScripts("preApplyDamage", args) || []);
         await Promise.all(opposed?.attackerTest?.item?.runScripts?.("preApplyDamage", args) || []);
         await Promise.all(this.parent.runScripts("preTakeDamage", args)); 
         // Reassign primitive values that might've changed in the scripts
         value = args.value;
         ignoreAP = args.ignoreAP;
+        penetrating = args.penetrating;
 
         let woundsGained = value;
         let armourRoll;
@@ -302,13 +309,12 @@ export class StandardActorModel extends BaseActorModel
                 }
                 armourValue += armourRoll.total;
             }
-            let penetrating = traits?.has("penetrating");
+            modifiers.push({value : -armourValue, label : game.i18n.localize("IMPMAL.Protection"), armour : true});
             if (penetrating)
             {
-                armourValue = Math.max(0, armourValue - Number(penetrating.value || 0));
-                modifiers.push({value : penetrating.value, label : game.i18n.localize("IMPMAL.Penetrating"), applied : true});
+                modifiers.push({value : Math.min(armourValue, penetrating), label : game.i18n.localize("IMPMAL.Penetrating")});
+                armourValue = Math.max(0, armourValue - Number(penetrating || 0));
             }
-            modifiers.push({value : -armourValue, label : game.i18n.localize("IMPMAL.Protection"), armour : true});
             if (traits?.has("ineffective"))
             {
                 modifiers.push({value : -armourValue, label : game.i18n.localize("IMPMAL.Ineffective"), armour : true});
@@ -381,7 +387,7 @@ export class StandardActorModel extends BaseActorModel
         {
             await this.parent.update(updateData);
         }
-        if (traits?.has("rend"))
+        if (traits?.has("rend") && woundsGained > 0)
         {
             damageData.rend = traits.has("rend").value;
             // TODO: this isn't supported if update flag is false

@@ -15,4 +15,15 @@ export default class AugmeticSheet extends IMItemSheet
       details: { scrollable: [""], template: `systems/impmal/templates/item/types/${this.type}.hbs` },
       effects: { scrollable: [""], template: 'systems/impmal/templates/item/item-effects.hbs' },
     }
+
+    async _onDropItem(data, ev)
+    {
+        let document = await Item.fromDropData(data);
+        if (document.type == "modification" && document.system.type == "augmetic")
+        {
+          this.item.update(this.item.system.mods.add(document.toObject()));
+        }
+        else super._onDropItem(data, ev);
+    }
+
 }

@@ -64,7 +64,10 @@ export class TalentModel extends StandardItemModel
     async _onCreate(data, options, user) 
     {
         await super._onCreate(data, options, user);
-        this.handleEffectSelection();
+        if (game.user.id == user)
+        {
+            this.handleEffectSelection();
+        }
     }
 
     computeDerived()
@@ -93,6 +96,12 @@ export class TalentModel extends StandardItemModel
                 allowed = await Dialog.confirm({title : game.i18n.localize("IMPMAL.IgnorePrerequisite"), content : game.i18n.localize("IMPMAL.IgnorePrerequisiteContent")});
             }
         }
+        allowed = (await this.handleExistingTalent()) ?? allowed;
+        return allowed;
+    }
+
+    handleExistingTalent()
+    {
         let existing = this.parent.actor?.itemTypes.talent.find(i => i.name == this.parent.name);
         if (existing)
         {
@@ -108,15 +117,14 @@ export class TalentModel extends StandardItemModel
                 }
                 await item.system.handleEffectSelection();
             });
-            allowed = false;
+            return false;
         }
-        return allowed;
     }
 
     // Applicable - Basically just checks whether an effect has been chosen and isn't disabled
-    effectIsApplicable(effect)
+    effectIsApplicable(effect, {ignoreDisabled})
     {
-        return super.effectIsApplicable(effect) && this.effectIncluded(effect);
+        return super.effectIsApplicable(effect, {ignoreDisabled}) && this.effectIncluded(effect);
     }
 
     // Transfer - Should check whether an effect has been chosen, but doesn't care about enabled or disabled

@@ -31,6 +31,14 @@ export class BaseActorModel extends BaseWarhammerActorModel
         }
     }
 
+    async _preUpdate(data, options, user)
+    {
+        if (data?.flags?.impmal?.opposed)
+        {
+            this.parent.runScripts("targeted", {test : game.messages.get(data.flags.impmal.opposed)?.system.test});
+        }
+    }
+
     initialize() 
     {
 
@@ -69,7 +77,7 @@ export class BaseActorModel extends BaseWarhammerActorModel
 
         let actor = this.parent;
 
-        if (config.description)
+        if (config.description == "top")
         {
             html += actor.system.notes.player;
             if (game.user.isGM)
@@ -115,9 +123,12 @@ export class BaseActorModel extends BaseWarhammerActorModel
             {
                 image = actor.prototypeToken.texture.src;
             }
-            html += `<div class="journal-image centered" ><img src="${image}" width="200" height="200"></div>`
+            if (!config.noImage)
+            {
+                html += `<div class="journal-image centered" ><img src="${image}" width="200" height="200"></div>`
+            }
             html += `<p style="text-align:center">@UUID[${actor.uuid}]{${config.label || actor.name}}</p>`
-            if (config.description)
+            if (config.description == "bottom")
             {
                 if (game.user.isGM)
                 {

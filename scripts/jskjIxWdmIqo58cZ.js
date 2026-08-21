@@ -1,0 +1,1 @@
+return !args.item?.name.includes("Twin Cognis Heavy Stubber")

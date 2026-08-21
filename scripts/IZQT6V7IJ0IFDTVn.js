@@ -1,0 +1,1 @@
+return !["awareness", "navigation"].includes(args.skill)

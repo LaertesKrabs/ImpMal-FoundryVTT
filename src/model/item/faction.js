@@ -19,6 +19,7 @@ export class FactionModel extends DualItemModel
         foundry.utils.mergeObject(schema.character.fields, {
             characteristics : new fields.SchemaField({
                 base : new fields.StringField(),
+                value: new fields.NumberField({initial: 5}),
                 choices : new fields.ArrayField(new fields.StringField())
             }, {}, {name : "characteristics", parent : schema.character}),
             advances : new fields.SchemaField({
@@ -28,7 +29,7 @@ export class FactionModel extends DualItemModel
             influence : new fields.EmbeddedDataField(ItemInfluenceModel, {}, {name : "influence", parent : schema.character}),
             talents : new fields.EmbeddedDataField(ChoiceModel, {}, {name : "talents", parent : schema.character}),
             equipment : new fields.EmbeddedDataField(ChoiceModel, {}, {name : "equipment", parent : schema.character}),
-            solars : new fields.NumberField(),
+            solars : new fields.NumberField({initial: 0}, {name: "solars", parent: schema.character}),
             duty : new fields.EmbeddedDataField(DeferredReferenceListModel, {}, {name : "duty", parent : schema.character}),
         });
         return schema;
@@ -39,7 +40,7 @@ export class FactionModel extends DualItemModel
     {
         if (["character", "npc"].includes(this.parent.actor?.type) && !options.skipFaction)
         {
-            let duties = await this.character.duty.documents;
+            let duties = await this.character.duty.awaitDocuments();
             if (duties.length >= 1)
             {
                 ItemDialog.create(duties, 1, {text : game.i18n.localize("IMPMAL.DutyChoice"), title : game.i18n.localize("IMPMAL.ApplyDuty")}).then(duty => 
@@ -77,13 +78,22 @@ export class FactionModel extends DualItemModel
         }
         else 
         {
-
-            html = `
-            <section class="box-text dark">
+            if (config.noBox)
+            {
+                html = `
+                
+                <h3>@UUID[${this.parent.uuid}]{${config.label || this.parent.name}}</h3>
+                ${this.character.notes}`;
+            }
+            else 
+            {
+                html = `
+                <section class="box-text dark">
                 <p class="box-header">@UUID[${this.parent.uuid}]{${config.label || this.parent.name}}</p>
                 ${this.character.notes}
-            </section>
-            `;
+                </section>
+                `;
+            }
         }
 
         let div = document.createElement("div");

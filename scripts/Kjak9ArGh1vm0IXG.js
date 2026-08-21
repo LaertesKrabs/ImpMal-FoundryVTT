@@ -1,0 +1,1 @@
+return !args.actor.statuses.has("blinded") || (args.skill != "melee" && args.skillItem.name != "Reflexes");

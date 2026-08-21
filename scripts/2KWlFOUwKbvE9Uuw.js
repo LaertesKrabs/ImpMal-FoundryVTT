@@ -1,0 +1,1 @@
+args.fields.SL += this.actor.friendliesInZone.filter(a => a.itemTypes.talent.find(i => i.name.toLowerCase() == this.item.name.toLowerCase())).length

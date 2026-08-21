@@ -1,0 +1,1 @@
+return args.skill != "discipline" || this.actor.friendliesInZone.filter(a => a.itemTypes.talent.find(i => i.name.toLowerCase() == this.item.name.toLowerCase())).length == 0

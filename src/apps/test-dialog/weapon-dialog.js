@@ -84,7 +84,7 @@ export class WeaponTestDialog extends AttackDialog
         }
         
         // If skill is a SkillSpec Item, provide the id, if not, provide the skill key
-        let dialogData = super.setupData({itemId : skill.id, key : weapon.system.attackType}, actor, context, options);
+        let dialogData = super.setupData({itemId : skill.id, key : weapon.system.skillOverride.value || weapon.system.attackType}, actor, context, options);
 
 
         dialogData.data.weapon = weapon;

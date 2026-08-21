@@ -3,6 +3,7 @@ import { ImpMalActor } from "./document/actor";
 import { ImpMalItem } from "./document/item";
 import { CharacterModel } from "./model/actor/character";
 import { NPCModel } from "./model/actor/npc";
+import { FamiliarModel } from "./model/actor/familiar.js";
 import { PatronModel } from "./model/actor/patron";
 import { AmmoModel } from "./model/item/ammo";
 import { AugmeticModel } from "./model/item/augmetic";
@@ -57,6 +58,7 @@ import { OpposedTestMessageModel } from "./model/message/opposed.js";
 import CharacterSheet from "./sheet/actors/character.js";
 import PatronSheet from "./sheet/actors/patron.js";
 import NPCSheet from "./sheet/actors/npc.js";
+import { FamiliarSheet } from "./sheet/actors/familiar.js";
 import VehicleSheet from "./sheet/actors/vehicle.js";
 import AugmeticSheet from "./sheet/items/types/augmetic.js";
 import AmmoSheet from "./sheet/items/types/ammo.js";
@@ -104,6 +106,7 @@ Hooks.once("init", () =>
     DocumentSheetConfig.registerSheet(Actor, "impmal", PatronSheet, { types: ["patron"], makeDefault: true, label : "Patron Sheet" });
     DocumentSheetConfig.registerSheet(Actor, "impmal", NPCSheet, { types: ["npc"], makeDefault: true, label : "NPC Sheet" });
     DocumentSheetConfig.registerSheet(Actor, "impmal", VehicleSheet, { types: ["vehicle"], makeDefault: true, label : "Vehicle Sheet" });
+    DocumentSheetConfig.registerSheet(Actor, "impmal", FamiliarSheet, { types: ["familiar"], makeDefault: true, label : "Familiar Sheet" });
     
     DocumentSheetConfig.registerSheet(Item, "impmal", AmmoSheet, { types: ["ammo"], makeDefault: true, label : "Ammo Sheet" });
     DocumentSheetConfig.registerSheet(Item, "impmal", AugmeticSheet, { types: ["augmetic"], makeDefault: true, label : "Augmetic Sheet" });
@@ -134,6 +137,7 @@ Hooks.once("init", () =>
     CONFIG.Actor.dataModels["patron"] = PatronModel;
     CONFIG.Actor.dataModels["npc"] = NPCModel;
     CONFIG.Actor.dataModels["vehicle"] = VehicleModel;
+    CONFIG.Actor.dataModels["familiar"] = FamiliarModel;
 
     CONFIG.Item.dataModels["boonLiability"] = BoonLiabilityModel;
     CONFIG.Item.dataModels["origin"] = OriginModel;

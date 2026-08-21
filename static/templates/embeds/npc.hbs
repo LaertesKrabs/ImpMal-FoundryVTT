@@ -58,14 +58,22 @@
                 <td colspan="9"><strong>{{localize "IMPMAL.Skills"}}</strong>: {{{skills}}}
                 </td>
             </tr>
+            {{#if traits}}
             <tr>
                 <td colspan="9">
                     <p class="item-header">{{localize "IMPMAL.Traits"}}</p>{{{traits}}}
-
                 </td>
             </tr>
+            {{/if}}
+            {{#if attacks}}
             <tr>
-                <td colspan="9"><strong>{{localize "IMPMAL.Possessions"}}</strong>: {{{possessions}}}
+                <td colspan="9">
+                    <p class="item-header">{{localize "IMPMAL.Attacks"}}</p>{{{attacks}}}
+                </td>
+            </tr>
+            {{/if}}
+            <tr>
+                <td colspan="9"><strong>{{localize "IMPMAL.Possessions"}}</strong>: {{{fallback possessions "None"}}}
                 </td>
             </tr>
         </tbody>

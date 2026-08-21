@@ -38,6 +38,16 @@ body.theme-light .application.impmal.item {
         }
     }
 
+    .tab[data-tab=details]
+    {
+        .row-content {
+            gap: 0.5rem;
+            input {
+                padding: 0px 0.5rem;
+            }
+        }
+    }
+
 
     .sheet-header {
         display: flex;

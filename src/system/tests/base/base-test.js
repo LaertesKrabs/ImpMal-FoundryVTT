@@ -348,6 +348,14 @@ export class BaseTest extends WarhammerTestBase
         let opposedTests = foundry.utils.deepClone(this.context.targets);
         for (let opposed of opposedTests)
         {
+            let opposedMessage = game.messages.get(this.context.responses[opposed.id]);
+            if (opposedMessage)
+            {
+                opposed.handler = opposedMessage
+                opposed.test = opposedMessage.system.defenderTest;
+                opposed.unopposed = opposedMessage.system.unopposed;
+            }
+
             if (opposed.test)
             {
                 opposed.result = new OpposedTestResult(this, opposed.test);

@@ -261,13 +261,31 @@ export class VehicleModel extends BaseActorModel
             })
         }
 
-        let args = {actor : this.parent, value, ignoreAP, modifiers, locationData: {direction: location}, opposed, traits, vehicle : true, context};
+        let penetrating = traits?.has("penetrating")?.value || 0;
+        let args = {actor : this.parent, value, ignoreAP, penetrating, modifiers, locationData: {direction: location}, opposed, traits, vehicle : true, context};
         await Promise.all(opposed?.attackerTest?.actor.runScripts("preApplyDamage", args) || []);
         await Promise.all(opposed?.attackerTest?.item?.runScripts?.("preApplyDamage", args) || []);
         await Promise.all(this.parent.runScripts("preTakeDamage", args)); 
         // Reassign primitive values that might've changed in the scripts
         let damage = args.value;
         ignoreAP = args.ignoreAP;
+        penetrating = args.penetrating;
+
+
+        let armourValue = this.combat.armour[location] || 0;
+        if (!ignoreAP)
+        {
+            modifiers.push({value : -armourValue, label : game.i18n.localize("IMPMAL.Protection"), armour : true});
+
+            if (penetrating)
+            {
+                modifiers.push({value : Math.min(armourValue, penetrating), label : game.i18n.localize("IMPMAL.Penetrating")});
+            }
+            if (traits?.has("ineffective"))
+            {
+                modifiers.push({value : -armourValue, label : game.i18n.localize("IMPMAL.Ineffective"), armour : true});
+            }
+        }
 
         for (let modifier of modifiers)
         {
@@ -282,9 +300,9 @@ export class VehicleModel extends BaseActorModel
 
         let excess = 0;
         let critical = false;
-        if (damage > this.combat.armour[location])
+        if (damage > 0)
         {
-            excess = damage - this.combat.armour[location];
+            excess = damage;
             critical = true;
         }
 

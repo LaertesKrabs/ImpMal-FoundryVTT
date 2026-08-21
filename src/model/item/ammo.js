@@ -14,7 +14,7 @@ export class AmmoModel extends PhysicalItemModel
         schema.addedTraits = new fields.EmbeddedDataField(TraitListModel);
         schema.removedTraits = new fields.EmbeddedDataField(TraitListModel);
         schema.usedWith = new fields.StringField();
-        schema.damage = new fields.NumberField();
+        schema.damage = new fields.NumberField({initial: 0});
         return schema;
     }
 

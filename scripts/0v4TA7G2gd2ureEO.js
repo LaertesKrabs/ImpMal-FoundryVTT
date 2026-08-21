@@ -1,1 +1,1 @@
-return !args.context.resist?.includes("frightened");
+return args.context.resist?.includes("frightened");

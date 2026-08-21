@@ -1,0 +1,1 @@
+this.actor.applyDamage(10, {message: true});

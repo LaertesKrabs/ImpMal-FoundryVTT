@@ -1,0 +1,1 @@
+return !["discipline", "fortitude"].includes(args.skill);

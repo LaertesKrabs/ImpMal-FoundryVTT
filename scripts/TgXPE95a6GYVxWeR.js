@@ -1,0 +1,1 @@
+return ["defend", "overwatch"].includes(args.actor.system.combat.action)

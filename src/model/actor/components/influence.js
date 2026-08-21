@@ -217,5 +217,6 @@ export class ActorInfluenceModel extends foundry.abstract.DataModel
                 delete faction.value;
             }
         }
+        return data;
     }
 }

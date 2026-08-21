@@ -123,7 +123,7 @@ export class ImpMalChatMessage extends WarhammerChatMessage
             {
                 name: game.i18n.localize("IMPMAL.ApplyDamage"),
                 icon: '<i class="fa-solid fa-user-minus"></i>',
-                condition: hasRoll,
+                condition: li => hasRoll(li) && !hasTest(li),
                 callback: li =>
                 {
                     let message = game.messages.get(li.dataset.messageId)
