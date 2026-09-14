@@ -193,7 +193,7 @@ export class OriginStage extends ChargenStage {
 
         if (!choice.list)
         {
-            choice.list = [choice];
+            choice.list = [foundry.utils.duplicate(choice)];
         }
 
         if (choice.list)
